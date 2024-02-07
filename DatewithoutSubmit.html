@@ -1,0 +1,101 @@
+<html>
+<head>
+<title>Date</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+	Effective from :
+	<input type="date" ng-model="date.firstDate" ng-change="output('firstdate')"/>
+	Effective to :
+	<input type="date" ng-model="date.secondDate" ng-change="output('seconddate')"/>
+	<p>{{result}}</p>
+</div>
+<script>
+	var app = angular.module('myApp', []);
+	app.controller('myCtrl', function($scope){
+	
+		var object = {};
+		$scope.date = {};
+
+		$scope.output = function(date1){
+		
+		console.log('date1',date1)
+			var Time1 = new Date($scope.date.firstDate).getTime();
+			var Time2 = new Date($scope.date.secondDate).getTime();
+			
+				if($scope.date.firstDate && $scope.date.secondDate){
+					var time_difference = $scope.date.secondDate.getTime() - $scope.date.firstDate.getTime();
+					var totalDays = time_difference /(1000 * 60 * 60 * 24);
+					console.log('totalDays',totalDays);
+				}
+		
+				var mondaysCount = 0;
+				var tuesdayCount = 0;
+				var wednesdayCount = 0;
+				var thursdayCount = 0;
+				var fridaycount = 0;
+				var sataurdaycount = 0;
+				var sundaycount = 0;
+			
+				$scope.result = {};
+				
+			if(Time1 < Time2){
+				while($scope.date.firstDate.getTime() < $scope.date.secondDate.getTime()){
+						//console.log('$scope.date.firstDate.getTime()',$scope.date.firstDate.getTime());
+						//console.log('$scope.date.secondDate.getTime()',$scope.date.secondDate.getTime())
+				
+						var firstDateValue = $scope.date.firstDate.getDay();
+						//console.log('firstDateValue',firstDateValue)
+			
+						$scope.date.firstDate.setDate($scope.date.firstDate.getDate() + 1);
+						if(firstDateValue == 0){
+							sundaycount++;
+							console.log('sun',sundaycount)
+						} else if(firstDateValue == 1){
+							mondaysCount++;
+						} else if(firstDateValue == 2){
+							tuesdayCount++;
+						} else if(firstDateValue == 3){
+							wednesdayCount++;
+						} else if(firstDateValue == 4){
+							thursdayCount++;
+						} else if(firstDateValue == 5){
+							fridaycount++;
+						} else if(firstDateValue == 6){
+							sataurdaycount++;
+							console.log('sat',sataurdaycount)
+						}
+
+						var weekends = sundaycount + sataurdaycount;
+						console.log('weekends', weekends);
+						
+						var workingDays = totalDays - weekends;
+						console.log('workingDays', workingDays)
+			}
+			
+			$scope.result.Mon = mondaysCount;
+			$scope.result.Tue = tuesdayCount;
+			$scope.result.Wed = wednesdayCount;
+			$scope.result.Thu = thursdayCount;
+			$scope.result.Fri = fridaycount;
+			$scope.result.Sat = sataurdaycount;
+			$scope.result.Sun = sundaycount;
+			$scope.result.workingDays = workingDays;	
+		}
+			if(date1 == 'firstdate'){
+				if(Time1 > Time2){
+					alert("first date should be less than from second date")
+				} 
+			}	
+			if(date1 == 'seconddate'){
+				if(Time1 > Time2){
+					alert("Effective from should be less than from effective to Date")
+				} 
+			}
+		}
+		
+ 	});
+</script>
+</body>
+</html>
