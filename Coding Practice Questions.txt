@@ -1,0 +1,813 @@
+
+// get the smallest & largest number from an array
+
+	var arr = [7,5,8,9,16,2,4];
+    
+    // using for loop
+    
+    let min = arr[0];
+    for(let i=0; i< arr.length; i++){
+    	if(min > arr[i]){
+        	min = arr[i]
+        }
+    }
+    document.write(min)
+	
+	// using min() & max() method
+	
+	 let res = Math.max(...arr)
+	 
+	 // using sort() method
+	 
+	 let res = arr.sort(function(a,b){
+    	return a-b;
+	 })
+     document.write(res[0])
+	 
+	 
+// get the second smallest or larget element
+
+	var arr = [7,8,9,16,2,4];
+    
+    let min = arr[0];
+    let smallest;
+    for(let i=0; i< arr.length; i++){
+    	if(min > arr[i]){
+        	smallest = min;
+        	min = arr[i];
+           
+        }
+        if(arr[i] < smallest  && min != arr[i]){
+        	smallest = arr[i]
+        }
+    }
+    
+    console.log('min',min)
+    console.log('smallest',smallest)
+	
+// Reverse an array
+
+	// using reverse method
+	
+	var arr = [7,16,12,4,7,45,8];
+   	var res = arr.reverse();
+	
+    document.write(res)
+	
+	// using for loop
+	
+	var arr = [7,16,12,4,7,45];
+   	var res = [];
+    
+    for(var i= arr.length-1; i >= 0; i--){
+    	res.push(arr[i])
+    }
+    console.log(res)
+	
+
+// sort an array 
+
+	// using sort method
+	
+	 var arr = [7,16,12,4,17,45];
+   
+     var res = arr.sort(function(a,b){
+          return a - b; 
+     })
+    console.log(res)
+	
+	// using for loop
+	
+	let arr = [0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1];
+
+      for (let i = 0; i < arr.length - 1; i++) {
+          for (let j = 0; j < arr.length - 1 - i; j++) {
+              if (arr[j] > arr[j + 1]) {
+                 
+                  let temp = arr[j];
+                  arr[j] = arr[j + 1];
+                  arr[j + 1] = temp;
+              }
+          }
+      }
+
+	console.log(arr);
+	
+// find the kth largest and smallest element of an array
+
+	// using sort method
+	
+	var arr = [7, 10, 4, 3, 20, 15];
+    var k = 2; // k 2 means second smallest/largest number
+
+    arr.sort(function(a, b) {
+        return a - b;
+    });
+
+    var kthSmallest = arr[k - 1];
+    console.log(kthSmallest);
+	
+// find how many times a particular number is in a array
+
+	// using for loop
+	
+	var arr = [7, 10, 4, 3, 20, 15,7,7];
+    
+	var svn_count = 0;
+    var x = 10;
+    
+    for(var i=0; i< arr.length; i++){
+    	if(x == arr[i]){
+        	svn_count++
+        }
+    }
+    console.log(svn_count)
+	
+	// using filter method
+	
+	var arr = [7, 10, 4, 3, 20, 10, 7,10];
+    var oo = 30;
+    var cnt = arr.filter(function(x){
+	
+        return x == oo;
+		
+    }).length;
+    console.log(cnt);
+	
+// sum of an array
+	
+	var arr = [7, 10, 4, 3, 20, 15,7];
+    
+    var sum = 0;
+    
+    for(var i=0; i<arr.length; i++){
+    	sum = sum + arr[i]
+    }
+    console.log(sum)
+	
+// move the negative elements to one side
+
+	// using sort method
+
+	var arr = [-7, 0, -4, -3, 20, 15,-7];
+	var res = arr.sort()
+	console.log(res)
+	
+	// using filter method
+	
+	 var arr = [-7, 0, -4, -3, 20, 15,-7];
+    
+     var positive = arr.filter(function(x){
+      return x >= 0;
+     })
+
+     var negative = arr.filter(function(x){
+      return x < 0;
+     })
+
+     arr = negative.concat(positive)
+     console.log(arr)
+	 
+	 // using loop 
+	 
+	 var arr = [-7, 0, -4, -3, 20, 15,-7];
+     
+     var j=0;
+     for(var i=0; i<arr.length; i++){
+     	if(arr[i] < 0){
+        	var temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            j++
+        }
+     }
+     
+     console.log(arr)
+	 
+	 // one more for loop
+	 
+	 var arr = [-5, -2, 5, 2, 4, 7, 1, 8, 0, -8];
+	
+		var positive = [];
+		var negative = [];
+		for(var i=0; i< arr.length; i++){
+			if(arr[i] < 0){
+				positive.push(arr[i])
+			}
+			if(arr[i] >= 0){
+				negative.push(arr[i])
+			}
+		}
+		
+		arr = positive.concat(negative).sort();
+    
+  document.write(arr)
+	
+
+// Merge the array and get the only repeated elements 
+
+	  var arr1 = [1, 3, 10, 5, 7]
+      var arr2 = [2, 3, 5, 6]
+      
+      var union = arr1.concat(arr2).sort();
+      var new_arr = [];
+      for(var i=0; i< union.length; i++){
+      
+      var count = 0;
+      	for(var j = i+1; j< union.length; j++){
+        
+        	if(union[i] == union[j]){
+            	count++
+            }
+        }
+        
+        if(count == 1){
+        	new_arr.push(union[i])
+			
+			// union.splice(i, count + 1);
+			//	i--; >>  Element is not unique, remove it (if u want to do in same array)
+        }
+      }
+      
+      console.log(new_arr) // output : [3,5]
+	  
+	
+// Rearrange array in alternating positive & negative items
+
+	Input:  arr[] = {-5, -2, 5, 2, 4, 7, 1, 8, 0, -8}
+	Output: arr[] = {-5, 5, -2, 2, -8, 4, 7, 1, 8, 0}	
+		
+		   var arr = [-5, -2, 5, 2, 4, 7, 1, 8, 0, -8];
+		   
+		   var positive = arr.filter(function(x){
+				return x >= 0;
+		   })
+		   
+		   var negative = arr.filter(function(x){
+				return x < 0;
+		   });
+		   
+		   var max_length = Math.max(positive.length, negative.length);
+		   console.log(max_length)
+		   
+			   var res = [];
+			   for(var i=0; i< max_length; i++){
+				  if(i < positive.length){
+					res.push(positive[i])
+				  }
+				   if(i < negative.length){
+					res.push(negative[i])
+				  }
+			   }
+		   document.write(res)
+		   
+		   
+		   
+ // find common elements from 3 different array
+
+		ar1[] = {1, 5, 10, 20, 40, 80} 
+		ar2[] = {6, 7, 20, 80, 100} 
+		ar3[] = {3, 4, 15, 20, 30, 70, 80, 120} 
+		// Output: 20, 80
+ 
+	// using for loop
+	
+	var arr1 = [3, 5, 10, 20, 40, 80];
+	var arr2 = [3, 7, 20, 100];
+	var arr3 = [3, 4, 15, 20, 30, 70, 80, 120];
+
+	var res = []
+	for(var i=0; i< arr1.length; i++){
+		for(var j=0; j< arr2.length; j++){
+			for(var k=0; k< arr3.length; k++){
+				if(arr1[i] == arr2[j] && arr1[i] == arr3[k]){
+					res.push(arr1[i])
+				}
+			}
+		}
+	}
+
+	console.log(res)
+	
+	// using filter method 
+	
+	var arr1 = [3, 5, 10, 20, 40, 80];
+	var arr2 = [3, 7, 20, 100];
+	var arr3 = [3, 4, 15, 20, 30, 70, 80, 120];
+	
+	var res = arr1.filter((x) => arr2.includes(x) && arr3.includes(x));
+	console.log(res)
+	
+// cyclically rotate the array
+	
+	   var arr =[1, 2, 3, 4, 5, 4,8,19];
+   
+		var cycle = 3;
+		var removed = arr.splice(arr.length-cycle, cycle);
+		
+		arr.unshift(removed)
+		for(i =0; i<arr.length; i++){
+		  console.log('i',arr[i])
+		}
+		
+		document.write(arr)
+		
+
+// Write a function that takes in two sorted arrays and merges them into a single sorted array.
+
+	 var arr1  = [1,12,8,2,9];
+	 var arr2 = [7,17,25,3,5];
+	 
+	  myfun(arr1,arr2)
+	 
+	 function myfun(arr1, arr2){
+		arr1.sort(function(a,b){
+		return a-b;
+	   })
+
+	   arr2.sort(function(a,b){
+		  return a-b;
+	   })
+	   
+	   var res = arr1.concat(arr2).sort(function(a,b){
+		  return a-b;
+	   })
+
+	   console.log(arr1)
+	   console.log(arr2)
+	   console.log(res)
+	 }	
+		
+// Find the Intersection of Two Arrays:
+
+   var Array1 = [1, 2, 3, 4, 5]
+   var Array2 = [3, 4, 5, 6, 7]
+   
+   var res = Array1.filter((x) => Array2.includes(x));
+   console.log(res)	
+		
+	
+// element to remove, and returns a new array with the specified element removed
+
+	var arr = [1,2,3,4,5,6,3,7];
+	var remove = 3;
+	var res = []
+	for(var i=0; i< arr.length; i++){
+		if(arr[i] != remove){
+			res.push(arr[i])
+		}
+	}
+	console.log(res)
+
+
+
+
+
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		--------------- STRING -------------
+		
+// rotate a string by letters
+		
+	var input = prompt('Enter Anything');
+
+	var res = '';
+	for(var i=input.length - 1; i>=0; i--){
+		res = res + input[i]
+	}
+	console.log(res)
+		
+		
+// rotate a string by words
+		
+	 var input = prompt('Enter Anything');
+
+	 var spli = input.split(' ');
+	 console.log(spli)
+	  
+	 var ot = '';
+	 for(var i=spli.length - 1; i>=0; i--){
+		ot = ot + spli[i] + ' '
+	 }
+	 console.log(ot) 
+		 
+		 
+// Write a function that takes a string as input and returns the number of vowels contained in it.
+
+	var str = 'aeroplane'
+	var vowels = ['a','e','i','o','u'];
+
+	var count = 0;
+
+	for(var i=0; i< str.length; i++){
+	  console.log('str',str[i])
+	  
+	  for(var j=0; j< vowels.length; j++){
+		if(str[i] == vowels[j]){
+			  count++;
+		  }
+	  }
+	}
+		
+		
+// Write a function that takes a string as input and returns the number of vowels contained in it. and what are them
+		
+	var str = 'aeroplane'
+	var vowels = ['a','e','i','o','u'];
+
+	var count = 0;
+	var res = {};
+
+	for(var i=0; i< str.length; i++){
+
+		for(var j=0; j< vowels.length; j++){
+			if(str[i] == vowels[j]){
+				count++;
+
+				if(res[vowels[j]]){
+					res[vowels[j]]++;
+				}else{
+					res[vowels[j]] = 1;
+				}
+			}
+		}	  
+	}
+
+	document.write(JSON.stringify(res))
+	console.log(count)
+		
+		
+		
+// Write a function that takes a sentence as input and returns the longest word in it.
+
+	var sentense = 'Hello alexa, yo yo Developer';
+	var spl = sentense.split(' ');
+	var long_word = spl[0];
+	 
+	for(var i=0; i< spl.length; i++){
+		var cc = spl[i].length;
+	   
+		 if(long_word.length < cc){
+			  long_word = spl[i];
+		 }
+	}
+	console.log(long_word)
+	
+	
+
+// Write a function that takes a string as input and returns an object containing the count of each character in the string.
+
+	var input = prompt('Enter anything')
+
+	var res = {};
+
+	for(var i=0; i< input.length; i++){
+		if(res[input[i]]){
+			res[input[i]]++;
+		}else{
+			res[input[i]] = 1;
+		}
+	}
+
+	console.log(res)
+	
+ // Write a function that takes a string as input and returns true if it's a palindrome (reads the same backward as forward), and false otherwise.
+ 
+	var input = prompt('')
+	var new_one = '';
+	
+	for(var i=input.length - 1; i >= 0; i--){
+		new_one += input[i]
+	}
+	
+    if(input == new_one){
+	  console.log(new_one + ' is Palidrome String')
+    }else{
+		  console.log(new_one + ' Its not')
+	}
+	
+	
+	var str = 'hello jiban jj';
+
+	var res = str.split(' ');
+
+	for(var i = 0; i < res.length; i++) {
+		res[i] = res[i].charAt(0).toUpperCase() + res[i].slice(1)
+	}
+
+	console.log(res.join(' '));
+	
+// Write a function that takes two strings as input and returns true if they are anagrams of each other, and false otherwise. Anagrams are words or phrases that contain the same characters but in a different order.
+	
+	var str1 = 'abck';
+	var str2 = 'kbca';
+
+	var sortedStr1 = str1.split('').sort().join('');
+	var sortedStr2 = str2.split('').sort().join('');
+
+	if(sortedStr1 == sortedStr2){
+		console.log('true')
+	}else{
+		console.log('false')
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+    ------- NUMBER PROGRAMS ---------
+
+// Check if a Number is Even or Odd:
+
+	var num = prompt('Enter number');
+	var number = parseInt(num)
+
+	for(var i=0; i<number; i++){
+		if(num % 2 == 0){
+			document.write('its Even');
+			break;
+		}else{
+			document.write('its Odd');
+			break;
+		}
+	}
+
+
+// Calculate the Sum of Even/Odd Numbers in an Array:
+
+	var num = [2,5,8,9,12,15];
+
+	var even = 0;
+	var odd = 0;
+
+	for(var i=0; i< num.length; i++){
+		if(num[i] % 2 == 0){
+			even += num[i]
+		}else{
+			odd += num[i]
+		}
+	}
+
+	console.log(even)
+	console.log(odd)
+	
+
+// Write a program that prints the numbers from 1 to 100. But for multiples of three, print "Fizz" instead of the number, 
+   and for the multiples of five, print "Buzz". For numbers that are multiples of both three and five, print "FizzBuzz".
+
+	for(var i=1; i<= 100; i++){
+		if(i % 3 == 0 && i % 5 != 0){
+			console.log(i + ' Fizz')
+		}
+		if(i % 5 == 0 && i % 3 != 0){
+			console.log(i + ' Buzz')
+		}
+		
+		if(i % 3 == 0 && i % 5 == 0){
+			console.log(i + ' Fizz Buzz')
+		}
+	}
+	
+// Reverse an Integer
+
+	var num = prompt('Enter a Number');
+	var rr = num.toString();
+	var res = '';
+	for(var i=rr.length - 1; i>=0; i--){
+		res += rr[i]
+	}
+	console.log(res)
+	
+	
+	// using while loop
+	
+		var num = 12345;
+
+		let reversedNum = 0;
+		while (num !== 0) {
+			const digit = num % 10;
+			console.log('digit',digit)
+			reversedNum = reversedNum * 10 + digit;
+			console.log('reversedNum',reversedNum)
+			num = Math.trunc(num / 10); // Using Math.trunc to perform integer division
+			console.log('num',num)
+		}
+   
+	console.log("Reversed number:", reversedNum);
+
+
+
+// Calculate the Sum of Digits in a Number
+
+	var input = 12345612;
+
+	var str_input = input.toString().split('');
+	console.log(str_input)
+
+	var sum =0;
+	for(var i=0; i<str_input.length; i++){
+		sum += parseInt(str_input[i])
+	}
+	console.log(sum)
+	
+
+	var input = 141;
+	var afterstr = input.toString();
+
+// Check if a Number is Palindrome:
+
+	var new_one = '';
+	for(var i=afterstr.length - 1; i >= 0; i--){
+		new_one += afterstr[i]
+	}
+	console.log('a',afterstr)
+	
+   if(afterstr == new_one){
+	    console.log(afterstr + ' is Palidrome Number')
+    }else{
+		console.log(afterstr + ' Its not')
+	}
+	
+// Write a function that takes an array of numbers as input and returns the average of all the numbers.
+
+	var input = [2,4,8,4,7] // total = 25 // total element = 5 ans = total / t_element (25/5) = 5 ans;
+
+	var sum = 0;
+	for(var i=0; i< input.length; i++){
+		sum += input[i]
+	}
+
+	var median = sum / input.length;
+	console.log(median)
+	
+// Calculate the Factorial of a Number:
+	
+	var num = 5;
+
+	var res = 1;
+	for(var i=1; i<= num; i++){
+		res = res * i;
+	}
+	console.log(res)
+	
+	
+// find the 2 digit largest palindrome number
+
+	for(i=10; i< 100; i++){
+		var num_str = i.toString();
+		var rvrstr = '';
+		
+		for(var j = num_str.length - 1; j >=0; j--){
+			rvrstr += num_str[j]
+		}
+
+		if(rvrstr == num_str){
+			var number = i
+		  
+		}
+	}
+	console.log(number + ' is the largest 2 digit palindrome')
+	
+// a perfect number is sum of its perfect Divisors Output: 28 = 1 + 2 + 4 + 7 + 14;
+
+	var num = 28;
+	var sum = 0;
+	
+	for(var i=1; i< num; i++){
+		if(num % i == 0){ // get all the divisors
+			sum += i;
+		}
+	}
+
+	if(sum == num){
+		console.log(num + ' is a perfect number')
+	}else{
+		console.log(num + ' is not')
+	}
+	
+	
+// Perfect Number between a specified range
+
+	for(var i=1; i< 100; i++){
+    
+	var sum = 0;
+	var num = i;
+		for(var j=1; j< num; j++){
+			if(num % j == 0){ // get all the divisors
+				sum += j;
+			}
+		}
+		
+		if(sum == num){
+			console.log(i + ' is a perfect number')
+		}else{
+			console.log(i + ' is not')
+		}
+	}
+	
+// Greatest Common Divisor of 2 numbers
+
+	let num1 = 8;
+	let num2 = 12;
+
+	while(num2 != 0){
+		let temp = num2;
+		num2 = num1 % num2;
+		num1 = temp;
+	}
+	console.log('num1',num1);
+	
+// Write a function that takes in two sorted arrays and returns the median of the combined array.
+
+	let input = [2, 7, 9, 8, 5, 22, 24, 14,5,22,42];
+    input.sort((a,b)=> a - b);
+	console.log(input);
+    
+    if(input.length % 2 == 0){
+    	var middle1 = input.length / 2;
+    	var middle2 = input.length / 2 - 1;
+        var op = (input[middle1] + input[middle2]) / 2;
+        console.log(op)
+    }else {
+    	var middle1 = Math.floor(input.length / 2);
+        var op = (input[middle1]);
+    	console.log(op)
+    }
+
+// Write a JavaScript function to determine if a given number is a lucky number or not.
+
+   var num = 153;
+   var str =  num.toString();
+   
+   var final = 0;
+   for(var i=0; i<str.length; i++){
+   		final += Math.pow(parseInt(str[i]), 3);
+   }
+   
+   
+   if(final == num){
+	console.log(final + 'its a lucky number')
+   }
+   
+// Implement a JavaScript function to find all lucky numbers within a specified range.
+
+      for(var i=10; i< 1000; i++){
+   		var num = i;
+        var str =  num.toString();
+        var final = 0;
+        
+        for(var j=0; j<str.length; j++){
+   			final += Math.pow(parseInt(str[j]), 3);
+   		}
+        
+        if(final == i){
+        	console.log(i + ' is a lucky number')
+        }
+   }
+   
+   
+   
+// Amstrong number between a range
+   
+   for(var i=10; i< 10000; i++){
+   		var num = i;
+        var str =  num.toString();
+        var final = 0;
+        
+        for(var j=0; j<str.length; j++){
+   			final += Math.pow(parseInt(str[j]), str.length);
+   		}
+        
+        if(final == i){
+        	console.log(i + ' is a amstrong number')
+        }
+    } 
