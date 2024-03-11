@@ -300,17 +300,13 @@
 	
 // cyclically rotate the array
 	
-	   var arr =[1, 2, 3, 4, 5, 4,8,19];
-   
-		var cycle = 3;
-		var removed = arr.splice(arr.length-cycle, cycle);
-		
-		arr.unshift(removed)
-		for(i =0; i<arr.length; i++){
-		  console.log('i',arr[i])
-		}
-		
-		document.write(arr)
+	var arr = [1, 2, 3, 4, 5,8];
+	
+    var cycle = 2;
+	
+    var removed = arr.splice(arr.length - cycle, cycle);
+	
+    console.log(removed.concat(arr));
 		
 
 // Write a function that takes in two sorted arrays and merges them into a single sorted array.
@@ -360,24 +356,186 @@
 	console.log(res)
 
 
+// sort array of object of objects
+
+	var arr = [ {'v':[2,7,6,9,8]},
+				{'a':[9,7,6,9,8]},
+				{'y':[1,7,6,9,8]},
+				{'h':[6,7,6,9,8]},
+				];
+				
+	  var res = arr.sort(function(a,b){
+			var keyA = Object.keys(a)[0];
+			var keyB = Object.keys(b)[0];
+		   
+			return keyB.localeCompare(keyA)
+	  })
+	  
+	   console.log('keyA',res)
+
+var data = [ { 'id': 1, 'name': 'John' },{ 'id': 2, 'name': 'Jane' },{ 'id': 1, 'name': 'John' },{ 'id': 3, 'name': 'Doe' }];
+-- Output: [ { 'id': 1, 'name': 'John' }, { 'id': 2, 'name': 'Jane' }, { 'id': 3, 'name': 'Doe' } ];
 
 
+	   var data = [  { 'id': 1, 'name': 'John' },{ 'id': 2, 'name': 'Jane' },{ 'id': 1, 'name': 'John' },{ 'id': 3, 'name': 'Doe' }];
+	   var new_arr = []   
+		   for(var i=0; i<data.length; i++){
 
+			 var count = 0;
+			 for(var j=i+1; j< data.length; j++){
+			   if(data[i].id == data[j].id){
+				 count++
+			   }
+			 }
+
+			 if(count == 0){
+			   new_arr.push(data[i])
+			 }
+		   }
+		   var op = new_arr.sort(function(a,b){
+			return a.id - b.id
+		   })
+	   console.log(op)
+
+var Arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+-- Output : [ [1, 2, 3], [4, 5, 6], [7, 8, 9] ]
 	
+	var arr = [11, 22, 33, 44, 55, 66, 77, 88, 99];
+    var new_arr = [];
+    
+    for(var i=0; i< arr.length; i++){
+      var removed = arr.splice(arr.length - 3, 3)
+      new_arr.push(removed)
+    }
+    
+   new_arr.reverse();
+   var json_string = JSON.stringify(new_arr);
+   console.log(json_string)
+   
 		
+	var students = [
+	  { studentName: "John", studentAge: 20 },
+	  { studentName: "Alice", studentAge: 22 }
+	];
+
+// Create a function that renames the properties `studentName` to `name` and `studentAge` to `age`.
+
+		var students = [
+             { studentName: "John", studentAge: 20 },
+             { studentName: "Alice", studentAge: 22 }
+		];
+        
+       var arr = students.map((x) =>{
+       	return {
+        	name : x.studentName,
+            age : x.studentAge
+        }
+       });
+       console.log(arr)
 		
+// Calculating Percentage Increase/Decrease:
+
+		var stocks = [
+            { name: "Apple", currentPrice: 150, previousPrice: 140 },
+            { name: "Google", currentPrice: 2000, previousPrice: 2100 }
+		];
+        
+        for(var i=0; i<stocks.length; i++){
+        	var current_prc = stocks[i].currentPrice;
+            var previous_prc = stocks[i].previousPrice;
+            
+			var percentage_inc = current_prc - previous_prc
+			percentage_inc = ((percentage_inc / stocks[i].previousPrice) * 100).toFixed(2);
 		
+            console.log(percentage_inc)
+        }
 		
+// get the first repeating element
+
+	function check_first_ele(arr){
+		for(var i=0; i< arr.length; i++){
+			for(var j=i+1; j< arr.length; j++){
+				if(arr[i] == arr[j]){
+					console.log(arr[i]);
+					var flag = true;
+					break;
+				}
+				
+			}
+			
+		}
+		if(flag){
+			return 'yoo'
+		}else{
+			return 'there is no repeating element';
+		}
+	}
+
+	var arr = [10, 5, 2, 4, 3, 5, 6];
+
+	console.log(check_first_ele(arr));	
 		
+// Write a function that takes an array of strings and returns an object containing the frequency of each unique string in the array.
+
+	var strings = ["apple", "banana", "apple", "orange", "banana", "apple"];
+	var obj = {};
+
+	for(var i=0; i< strings.length; i++){
+		var all_frt = strings[i]
+		 if(!obj[all_frt]){
+			obj[all_frt] = 1;
+		 }else{
+			obj[all_frt]++;
+		 }
+	   
+	}
+
+	console.log(obj)
 		
-		
-		
-		
-		
-		
-		
-		
-		
+// Get the average salary of each Department
+
+     var employees = [
+         { name: "John", department: "HR", salary: 50000 },
+         { name: "Alice", department: "Engineering", salary: 60000 },
+         { name: "Bob", department: "HR", salary: 55000 }
+     ];
+     
+     var dept = {};
+     employees.forEach(function(x){
+     	if(!dept[x.department]){
+        	dept[x.department] = {
+            	total_sal : x.salary,
+                total_count : 1
+            }
+        }else{
+        	dept[x.department].total_sal += x.salary;
+            dept[x.department].total_count ++;
+        } 
+     })
+	
+    for(var i in dept){
+        dept[i].avg_sal = dept[i].total_sal / dept[i].total_count;
+        
+    }
+    
+    employees.forEach(function(p){
+     	p.avg_sal = dept[p.department].avg_sal 
+     })
+    console.log(employees)		
+	
+
+// Write a function that recursively flattens this array into a single array.
+
+	const nestedArray = [1, [2, [3, 4]], 5, [6, [7, 8, [9, 10]]]]
+	const flattenedArray = nestedArray.flat(Infinity);
+
+	console.log(flattenedArray);
+
+
+
+
+
+
 		
 		--------------- STRING -------------
 		
@@ -485,6 +643,18 @@
 
 	console.log(res)
 	
+	// using for of loop
+	
+	var str = 'Heloo its unyKloud'
+
+	var res = {};
+
+	for (var i of str){
+	console.log(i)
+		 res[i] = (res[i] || 0) + 1
+	}
+	console.log(res)
+	
  // Write a function that takes a string as input and returns true if it's a palindrome (reads the same backward as forward), and false otherwise.
  
 	var input = prompt('')
@@ -526,23 +696,62 @@
 	}
 	
 	
+// Write a function to check if a given string contains only numbers.
+	
+	var str = '1g835';
+	str.split('')
+
+	for(var i =0; i<str.length; i++){
+
+	var isNum = true;
+		if(str[i] < '0' || str[i] > '9'){
+			isNum = false;
+			break;
+		}
+	}
+
+	console.log(isNum)
+
+	
+// write a function to check the parentheses are balanced or not
+	function check_para(str){
+      var blnc = 0;
+      for(var i=0; i<str.length; i++){
+          const char = str[i]
+
+          if(char == '('){
+              blnc++
+          }else if(char == ')'){
+              blnc--
+
+              if(blnc < 0){
+                  return false;
+              }
+          }
+      }
+      return blnc === 0;
+    }
+    
+    var str = '('(' and ')')';
+    console.log(check_para(str));
+	
+	
+// convert a string to Title Case
+	
+	var str = 'hello world' 
+	var res = str.split(' ')
+	
+	for(var i=0; i< res.length; i++){
+		res[i] = res[i].charAt(0).toUpperCase() + res[i].slice(1)
+	}
+	console.log(res.join(' '))
 	
 	
 	
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
     ------- NUMBER PROGRAMS ---------
 
@@ -811,3 +1020,100 @@
         	console.log(i + ' is a amstrong number')
         }
     } 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+------------ JAVASCRIPT (UI RELATED) ------------
+
+// fetching data from API
+
+	fetch('https://fakestoreapi.com/products/1')
+	.then(x => x.json())
+	.then(res => {
+		console.log(res)
+	});
+	
+// Birthday Reminder In Dates
+
+	var date = new Date();
+	date.setHours(1)
+	date.setMinutes(2)
+	date.setSeconds(10);
+
+
+	var ss = date.getSeconds();
+	var min = date.getMinutes();
+	var hr = date.getHours();
+	console.log(min)
+	var stop = setInterval(function(){
+	//console.log(date)
+		ss = ss - 1
+		console.log('ss',ss)
+		if(ss <= 0){
+			ss = 10;
+			min = min - 1;
+			console.log('min',min)
+		   if(min <= 0){
+			  min = 2;
+			  hr = hr - 1;
+			  console.log('hr',hr)
+				if(hr == 0){
+					console.log('Yooo');
+					clearInterval(stop)
+				}
+			}
+		}
+	},1000)
+	
+// Age Calculator
+
+  var date_1 = '2000/3/15'
+  var date_2 = new Date();
+  
+  var in_time = new Date(date_1)
+  console.log(in_time)
+  
+  var total_time = date_2.getTime() - in_time;
+  
+  var total_days = Math.floor(total_time / (1000 * 60 * 60 * 24))
+    console.log(total_days)
+ 
+   
+  var total_years = Math.floor(total_days / 365);
+  console.log(total_years)
+
+  var total_months = Math.floor((total_days % 365) / 30);
+  console.log(total_months) 
+
+  var total_days = Math.floor((total_days % 365) % 30);
+  console.log(total_days)
+  
+// Generate OTP and Captcha
+
+  var submit = document.getElementById('btn')
+  submit.addEventListener('click', function(){	
+      var otp = '';
+      var num = '1234567890'
+      var char_ = 'abcdefghijklmnopqrstuvwxyz'
+      for(var i=0; i< 5; i++){
+          var numer = Math.floor(Math.random() * num.length);
+          var str = Math.floor(Math.random() * char_.length);
+
+           if (i % 2 === 0) {
+              otp += char_.charAt(str)
+           }else{
+              otp += num.charAt(numer)
+           }
+      }
+      console.log(otp)
+  })
