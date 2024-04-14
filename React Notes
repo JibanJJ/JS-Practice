@@ -1,0 +1,235 @@
+															------------ JS Related Topics ------------
+
+Difference between function Expression and Function Declaration
+	
+	It will work if we call the function before declaration.
+	
+	// Function Declaration
+	
+		myFunctionDeclaration(); // This works even before the declaration
+
+		function myFunctionDeclaration() {
+			console.log("This is a function declaration");
+		}
+		
+	// Function Expression
+	
+		// myFunctionExpression(); // This will throw an error - myFunctionExpression is not defined
+
+		var myFunctionExpression = function() {
+			console.log("This is a function expression");
+		};
+
+		myFunctionExpression(); // This works
+		
+Browser Engines -
+
+	Browser engines are software components responsible for rendering web pages in web browsers. 
+	They interpret HTML, CSS, and JavaScript code to display web content to users. 
+
+	Chrome, Opera - V8 Engine
+	IE, Edge - Chakra Engine
+	Firefox - Spider Monkey Engine
+	Safari - Nitra Engine
+
+	DOM - Document object model
+	BOM - Browser object model
+	JIT - Just-In-Time (The code is just loaded in the browser and compiled)
+	AOT - Ahead-of-Time (The code is compiled before its reach to the browser)
+
+
+
+
+
+
+
+															--------------- React Topics --------------
+
+What is react -
+
+	React is a JavaScript library for building user interfaces (UIs) on the web. React is a declarative, 
+	component based library that allows developers to build reusable UI components and It follows the Virtual DOM (Document Object Model) approach, 
+	which optimizes rendering performance by minimizing DOM updates.
+
+Features of react --
+
+	1. Component-Based Architecture
+
+		The component based architecture in react, that allows developers to build complex user interfaces by breaking them into smaller reusable components.
+		Each Component can manage its own state and props and can be easily reused throughout the application.
+			
+	2. JSX 
+		JSX stands for javascript xml, it is syntax extension for javascript it allows us to write HTML elements in their JavaScript code.
+
+	3. Virtual DOM 
+	`
+		Virtual DOM is a light-weight in memory representation of the actual DOM.
+		Instead of manipulating the browser's DOM directly, React creates a virtual DOM in memory, 
+		where it does all the necessary manipulating, before making the changes in the browser DOM.
+
+	4. One-way Data Binding
+	   -- One-way data binding, means it is a one-direction flow. The data in react flows only in one direction i.e. 
+		  the data is transferred from parent components to child components.
+	5. Performance
+	   -- As react creates Virtual Dom and updates only the modified parts.
+		  So, this makes the DOM to run faster
+	6. Components
+	   -- React divides the web page into multiple components as it is component-based.
+		  Each component is a part of the UI design which has its own logic and design,
+		  so it makes easy and run faster and can be reusable.
+	7. Single-Page Applications (SPAs)
+	   -- React is recommended in creating SPAs, allowing smooth content updates without page reloads.
+   
+   
+   Issues / Disadvantages in React -
+
+	- It is not designed  for what we are using, hence lot of GAPs
+	- GAPs means, when companies got any projects from clients, we cant build it 100% with proper technologies like java,python,php e.t.c.
+	  All techmogies are not same, so every technologies having some different GAPs, which is having less GAPS we will go through that and 
+	  that GAPs will fill by different 3rd party plugins.
+	  
+React Components -
+
+	In React Everything is a component, A component is a small, reusable piece of code that represents a part of a user interface.
+
+	Components comes with 2 types
+            1. Function Component (Preffered)
+            2. Class Component
+			
+When to choose functional component or class component:
+	
+	React v 18 supports all the functionality whatever class component is supporting but Extensibility is not supported in functional component.
+	Class Components are Extensible.
+	
+Difference between a Normal function and Functional Component is 
+	
+	In JavaScript a Normal Function can return a function and string, number, boolean e.t.c but A functional component can return a function only.
+	Ex - 
+		function SearchBar(){
+			return( can write anything ) // anonymous function 
+		}
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+what is fragment
+
+	It is used to wrap multiple lines also will prevent unnecessarily adding extra nodes to the DOM.
+	fragment looks lke empty HTML tag <></>
+	
+-- use className instead of class in React
+Components -
+Components are independent and reusable bits of code.
+
+While creating a React component, the component's name must start with an upper case letter. EX- Car,Custom e.t.car
+Lifecycle of Components --
+Each component in React has a lifecycle which you can monitor and manipulate during its three main phases.
+The three phases are: 
+                      Mounting, 
+                      Updating, 
+                      and Unmounting.
+                      
+Mounting -- 
+Mounting means putting elements into the DOM.
+React has FOUR built-in methods that gets called, in this order, when mounting a component:
+    1.constructor()
+    2.static getDerivedStateProps()
+    3.render()
+    -- The render() method is required, and is the method that actually outputs the HTML to the DOM.
+    4.componentDidMount()
+    -- this method is called after the component is rendered.
+    -- To run the statements it requires that the component is already placed in the DOM.
+    
+Updating --
+A component is updated whenever there is a change in the component's state or props.
+React has four built-in methods that gets called, in this order, when a component is updated:
+    
+    1.shouldComponentUpdate()
+    -- In the shouldComponentUpdate() method you can return a Boolean value that specifies 
+       whether React should continue with the rendering or not.
+    -- The default value is true.
+    2.render()
+    -- The render() method is of course called when a component gets updated,
+       it has to re-render the HTML to the DOM, with the new changes.
+    3.getSnapshotBeforeUpdate()
+    -- In the getSnapshotBeforeUpdate() method you have access to the props and state before the update, 
+       meaning that even after the update, you can check what the values were before the update.
+    4.componentDidUpdate()
+    -- The componentDidUpdate method is called after the component is updated in the DOM.
+    -- If the getSnapshotBeforeUpdate() method is present, you should also include the componentDidUpdate() method, otherwise you will get an error.
+       And in this method you will get new values after the update.
+    5.getDerivedStateFromProps()
+       
+Unmounting --
+The next phase in the lifecycle is when a component is removed from the DOM, or unmounting as React likes to call it.
+React has only one built-in method that gets called when a component is unmounted:
+    1.componentWillUnmount()
+    -- The componentWillUnmount method is called when the component is about to be removed from the DOM.
+    
+Props - 
+    -- Props is a special keyword in React that stands for properties and is used for passing data from one component to another
+    
+React Events -
+    -- React events are written in camelCase syntax:
+       onClick instead of onclick
+       
+    -- React event handlers are written inside curly braces:
+       onClick={shoot}  instead of onclick="shoot()"
+       
+React Router -
+    -- To add React Router in your application, use npm i -D react-router-dom in the terminal
+    -- Anytime we link to an internal path, we will use <Link> instead of <a href="">.
+    
+React CSS -
+    -- In JSX, JavaScript expressions are written inside curly braces, and since JavaScript objects also use curly braces, 
+       the styling in the example above is written inside two sets of curly braces {{}}.
+    -- Since the inline CSS is written in a JavaScript object, properties with hyphen separators, 
+       like background-color, must be written with camel case syntax:
+       
+       Ex- Use backgroundColor instead of background-color
+       
+React Hooks -
+    -- There are 3 rules for hooks:
+        1.Hooks can only be called inside React function components.
+        2.Hooks can only be called at the top level of a component.
+        3.Hooks cannot be conditional
+useState Hook - 
+    -- The React useState Hook allows us to track state in a function component.
+    -- State generally refers to data or properties that need to be tracking in an application.
+React-dom :
+    -- React JS ReactDOM or react-dom is the most widely used package of React. 
+       React provides the developers with a package react-dom to access and modify the DOM.
+MVC - Model-View-Controller
+How do browsers read JSX:
+    -- In general, browsers are not capable of reading JSX and only can read pure JavaScript. The web browsers read JSX with the help of a transpiler. 
+       Transpilers are used to convert JSX into JavaScript. The transpiler used is called Babel
+context API - 
+    -- Context API is used to pass global variables anywhere in the code.
+       It helps when there is a need for sharing state between a lot of nested components.
+
+
+why we use const for configuring state
+
+	state must be initialized, hence const is good
+	state once intialized cant be assigned with new memory, hence const is good
+	You can re initialize the state to store new values.
