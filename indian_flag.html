@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#grad1 {
+  height: 50px;
+  width: 50px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#i_crc {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background-color: yellow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.line {
+  height: 2px;
+  width: 50px;
+  background-color: blue;
+  position: absolute;
+	
+}
+
+.main_flag{
+	height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    
+    background: linear-gradient(orange 0% 33%, transparent 33% 66%, green 66% 100%);
+    display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
+</head>
+<body>
+
+
+<div class="main_flag">
+	<div id="grad1">
+      <div id="i_crc">
+        <div class="line" style="transform: rotate(0deg);"></div>
+        <div class="line" style="transform: rotate(15deg);"></div>
+        <div class="line" style="transform: rotate(30deg);"></div>
+        <div class="line" style="transform: rotate(45deg);"></div>
+        <div class="line" style="transform: rotate(60deg);"></div>
+        <div class="line" style="transform: rotate(75deg);"></div>
+        <div class="line" style="transform: rotate(90deg);"></div>
+        <div class="line" style="transform: rotate(105deg);"></div>
+        <div class="line" style="transform: rotate(120deg);"></div>
+        <div class="line" style="transform: rotate(135deg);"></div>
+        <div class="line" style="transform: rotate(150deg);"></div>
+        <div class="line" style="transform: rotate(165deg);"></div>
+      </div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<html>
+<head>
+<title>All about dates</title>
+</head>
+<body>
+	<input type="date" id="first" onchange="calculate_days('first_one')">
+	<input type="date" id="second" onchange="calculate_days('second_one')">
+	
+	<div id="show"></div>
+	
+	<button id="btn">reset</button>
+<script>
+	function calculate_days(date_val){
+		console.log('its calling',date_val)
+		
+		var first_date = document.getElementById('first').value;
+		var f_cnvt_time = new Date(first_date).getTime();
+		console.log(f_cnvt_time)
+		
+		var second_date = document.getElementById('second').value;
+		var s_cnvt_time = new Date(second_date).getTime();
+		console.log(s_cnvt_time)
+		
+		if(date_val == 'first_one'){
+			if(s_cnvt_time && f_cnvt_time){
+				if(f_cnvt_time > s_cnvt_time){
+					alert('first date should not greater than from second date');
+					document.getElementById('first').value = '';
+				}
+			}
+		}
+		
+		if(date_val == 'second_one'){
+			if(s_cnvt_time && f_cnvt_time){
+				if(s_cnvt_time < f_cnvt_time){
+					alert('second date should be greater than from first date');
+					 document.getElementById('second').value = '';
+				}
+			}
+		}
+		
+		if(first_date < second_date){
+			var total_time = s_cnvt_time - f_cnvt_time;
+			console.log('total_time',total_time)
+			
+			var total_days = total_time / (1000 * 60 * 60 * 24);
+			console.log('total_days',total_days)
+		}
+		
+		
+		var sun_count = 0;
+		var res = {};
+		if(f_cnvt_time && s_cnvt_time){
+			
+			while(f_cnvt_time < s_cnvt_time){
+				console.log('first_date',first_date);
+				console.log('second_date',second_date)
+				
+				var firstDateValue = new Date(f_cnvt_time).getDay();
+				console.log('firstDateValue',firstDateValue)
+
+				if(firstDateValue == 0){
+					sun_count++;
+					console.log('sun',sun_count)
+				}
+				  f_cnvt_time += 24 * 60 * 60 * 1000;
+				  
+			}
+			
+		}
+		res.sun = sun_count;
+		res.total_days = total_days;
+		
+		document.getElementById('show').innerHTML = JSON.stringify(res);
+		
+		
+	}
+		var reset_btn = document.getElementById('btn');
+		reset_btn.style.backgroundColor = 'pink';
+		reset_btn.style.color = 'black';
+		reset_btn.style.width = '100px';
+		reset_btn.style.height = '30px';
+		reset_btn.style.marginTop = '10px';
+		reset_btn.style.border = 'none';
+		reset_btn.style.borderRadius = '5px';
+		
+		reset_btn.addEventListener('click', function(){
+			document.getElementById('first').value = '';
+			document.getElementById('second').value = '';
+			document.getElementById('show').innerHTML = '';
+	   })
+	   reset_btn.addEventListener('mouseover', function(){
+			reset_btn.style.cursor = 'pointer';
+			reset_btn.style.width = '130px';
+			reset_btn.style.height = '30px';
+			reset_btn.style.transition = '3s';
+	   })
+	
+	
+	/* 
+		var sun_count = 0;
+		var res = {};
+
+		var today = new Date();
+		var currentMonth = today.getMonth(); 
+		console.log(currentMonth);
+		for (var x = new Date(); x.getMonth() === currentMonth; x.setDate(x.getDate() + 1)) {
+			
+			console.log(x);
+			if(x.getDay() == 0){
+				sun_count++
+			}
+			res.sun = sun_count
+		}
+		console.log(res)
+	*/
+	
+</script>
+</body>
+</html>

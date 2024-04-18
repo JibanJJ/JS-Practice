@@ -1,0 +1,141 @@
+<html>
+<head>
+<title>PRACTICE</title>
+</head>
+
+<body>
+
+<script>
+	var nestedObject = { 'a': 1, 'b': { 'c': 2, 'd': { 'e': 3} } };
+	//Output: { 'a': 1, 'b.c': 2, 'b.d.e': 3 }
+    var new_obj = {};
+   /* for(var i in nestedObject){
+    //	console.log('val',nestedObject[i])
+        console.log('i>>',i)
+         
+         
+         if(typeof nestedObject[i] == 'number'){
+         	new_obj[i] = nestedObject[i];
+		}else{
+			
+			
+			console.log(i)
+			
+			for(var j in nestedObject[i]){
+				console.log('j',j)
+				if(typeof nestedObject[i][j] == 'number'){
+					var scnd_key = i + '.' + j;
+					console.log('scnd_key',scnd_key)
+					new_obj[scnd_key] = nestedObject[i][j];
+				}else{
+					for(k in nestedObject[i][j]){
+						console.log('k',k);
+						var third_key = i + '.' + j + '.' + k;
+						console.log('third_key',third_key)
+						new_obj[third_key] = nestedObject[i][j][k];
+					}
+				}
+			}
+		}
+       
+    }*/
+	/*
+	for(var i in nestedObject){
+         if(typeof nestedObject[i] == 'number'){
+         	new_obj[i] = nestedObject[i];
+		 }
+			console.log(i)
+			
+		for(var j in nestedObject[i]){
+			console.log('j',j)
+			if(typeof nestedObject[i][j] == 'number'){
+				var scnd_key = i + '.' + j;
+				console.log('scnd_key',scnd_key)
+				new_obj[scnd_key] = nestedObject[i][j];
+			}
+			
+			for(k in nestedObject[i][j]){	 
+				console.log('k',k);
+				var third_key = i + '.' + j + '.' + k;
+				console.log('third_key',third_key)
+				new_obj[third_key] = nestedObject[i][j][k];
+			}
+		}
+    }
+	document.write(JSON.stringify(new_obj))*/
+	
+	/*
+	var nestedObject = { 'a': 1, 'b': { 'c': 2, 'd': { 'e': 3 } } };
+	var new_obj = {};
+
+	function flattenObject(obj, parentKey = '') {
+	console.log('obj',obj)
+	console.log('parentKey',parentKey)
+		for (var key in obj) {
+		console.log('key',key)
+			var currentKey = parentKey + (parentKey ? '.' : '') + key;
+			console.log('currentKey',currentKey)
+			if (typeof obj[key] === 'object') {
+				flattenObject(obj[key], currentKey);
+			} else {
+				new_obj[currentKey] = obj[key];
+			}
+		}
+	}
+
+flattenObject(nestedObject);
+
+document.write(JSON.stringify(new_obj));*/
+/*
+	var data = [
+	  { 'id': 1, 'name': 'John' },
+	  { 'id': 2, 'name': 'Jane' },
+	  { 'id': 1, 'name': 'John' },
+	  { 'id': 3, 'name': 'Doe' }
+	];
+	//Output: [{'id': 1,'name': 'John'}, {'id': 2,'name': 'Jane'}, {'id': 3,'name': 'Doe'} ]
+	
+	var output = [];
+	for(var i=0; i<data.length; i++){
+		var id_ = data[i].id;
+		var count = 0;
+		for(var j = i+1; j<data.length; j++){
+			if(id_ == data[j].id){
+				count++
+			}
+		}
+		if(count == 0){
+			output.push(data[i])
+		}
+	}
+	console.log(output)*/
+	
+	var Arr = [1,2,3,4,5]
+// output : [2,3,4,5,1] , rotate = 1
+// output : [3,4,5,1,2] , rotate = 2
+/*
+	for(var i=1; i<Arr.length; i++){
+		console.log(i)
+		console.log('aa',Arr[i])
+	//	var aa = Arr[0]
+		var aa = Arr.shift()
+		Arr.push(aa)
+		//console.log(Arr)
+		break;
+	}
+		console.log(Arr)*/
+
+	for(var i=2; i<Arr.length; i++){
+		console.log(i)
+		console.log('aa',Arr[i])
+		
+		var aa = Arr.splice(0,2)
+		console.log(aa)
+		Arr = [...Arr,...aa];
+		break
+	}
+		console.log('arr',Arr)
+
+</script>
+</body>
+</html>

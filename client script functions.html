@@ -1,0 +1,109 @@
+<html>
+<head>
+<title>get </title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+	<div id = "clock" ></div>
+</div>
+<script>
+	// Client script pageint function
+	
+	
+/*	function pageInit(scriptContext) {
+    	//alert('pageInit')
+    	log.debug('pageInit',scriptContext)
+    	var date = new Date()
+    	log.debug('date',date)
+    
+    	if(scriptContext.mode == 'create'){
+           
+				log.debug('scriptContext.mode',scriptContext.mode)
+				var currentRecord = scriptContext.currentRecord;
+				
+				log.debug('currentRecord',scriptContext.mode)
+				currentRecord.setValue({
+					fieldId: 'custrecord_cr_pm_attachments_title',
+					value: 'Jiban JJ',
+				});
+				
+				currentRecord.setValue({
+					fieldId: 'custrecord_cr_pm_attachments_notes',
+					value: 'Rostering'
+				});
+				
+				currentRecord.setValue({
+					fieldId: 'custrecord_cr_pm_attachments_attach',
+					value: '3'
+				});
+				
+				var disableValue = currentRecord.getField({
+					fieldId: 'custrecord_cr_pm_attachments_attach'
+				})
+				log.debug('disableValue',disableValue)
+				disableValue.isDisabled = true;
+				
+				currentRecord.setValue({
+					fieldId: 'custrecord_cr_pm_attachments_date',
+					value: date
+				});
+			} 
+    	return true;
+    }*/
+	
+	
+	
+	
+	// client script fieldchanged function
+	
+	/* function fieldChanged(scriptContext) {
+		alert('fieldchanged')
+		log.debug('fieldchanged',scriptContext)
+			
+		var currentRecord = scriptContext.currentRecord;
+		log.debug('currentrecord',currentRecord)
+			
+		log.debug('fieldName',currentRecord)
+		var fieldName = currentRecord.getValue({
+			fieldId : 'custrecord_cr_pm_attachments_attach'
+		})
+		log.debug('fieldName',fieldName)
+			if(scriptContext.fieldId == 'custrecord_cr_pm_attachments_attach'){
+				if(fieldName == 2){
+					currentRecord.setValue({
+						fieldId: 'custrecord_cr_pm_attachments_title',
+						value: 'Attachments222',
+					});
+					currentRecord.setValue({
+						fieldId: 'custrecord_cr_pm_attachments_notes',
+						value: 'Note222',
+					});
+				}else if(fieldName == 3){
+					currentRecord.setValue({
+						fieldId: 'custrecord_cr_pm_attachments_title',
+						value: 'Attachments333',
+					});
+					currentRecord.setValue({
+						fieldId: 'custrecord_cr_pm_attachments_notes',
+						value: 'Note333',
+					});
+				}else{
+					currentRecord.setValue({
+						fieldId: 'custrecord_cr_pm_attachments_title',
+						value: '',
+					});
+					currentRecord.setValue({
+						fieldId: 'custrecord_cr_pm_attachments_notes',
+						value: '',
+					});
+				}
+			}
+			
+			return true;
+    }*/
+	
+	
+</script>
+</body>
+</html>	

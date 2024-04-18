@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>PRACTICE</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+	<pre>{{obj1 | json}}</pre>
+</div>
+<script>
+	var app = angular.module('myApp', []);
+	app.controller('myCtrl', function($scope){
+	
+	$scope.obj1 = [
+				{application:'one',application_type:"",agreement:'',Inventory_Acquisition:''},
+				{application:'',agreement:'two',agreement_type:'',Inventory_Acquisition:''},
+				{application:'',agreement:'',Inventory_Acquisition_type:"",Inventory_Acquisition:'three'},
+          ]
+		  
+		  
+	// $scope.obj2 = {one:{type:'MH',Link:'jkbkjnkl'},two:{type:'RV',Link:''},three:{type:'MV',Link:'hvbjhbj'} }
+	$scope.obj2 = {application:{type:'MH',Link:'jkbkjnkl'},agreement:{type:'RV',Link:''},Inventory_Acquisition:{type:'MV',Link:'hvbjhbj'} }
+	
+	/* for(var i in $scope.obj2){
+		console.log(i)
+		
+		for(var j=0; j<$scope.obj1.length; j++){
+			console.log('first_obj',$scope.obj1[j])
+			if($scope.obj1[j].application == i){
+				Object.assign($scope.obj1[j], $scope.obj2[i]); 
+			}else if($scope.obj1[j].agreement == i){
+				Object.assign($scope.obj1[j], $scope.obj2[i]); 
+			}else if($scope.obj1[j].Inventory_Acquisition == i){
+				Object.assign($scope.obj1[j], $scope.obj2[i]); 
+			}
+		}
+	}
+	console.log('updated',$scope.obj1) */
+	
+	 for(var i in $scope.obj2){
+		console.log(i)
+		
+		for(var j=0; j<$scope.obj1.length; j++){
+			console.log('first_obj',$scope.obj1[j])
+			/* for(let key in $scope.obj1[j]){
+				console.log('keys',key)
+				if(key == i && $scope.obj1[j][key]){
+					Object.assign($scope.obj1[j], $scope.obj2[i]); 
+				}
+			}*/
+			 if ($scope.obj1[j][i]) {
+                Object.assign($scope.obj1[j], $scope.obj2[i]);
+            }
+			
+		}
+	}
+	console.log('updated',$scope.obj1)
+
+	
+});
+</script>
+</body>
+</html>

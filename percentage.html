@@ -1,0 +1,272 @@
+
+<html>
+<head>
+<title>Sharing Percentage Task</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<style>
+	table,th,td{
+		border : 0px solid black;
+		border-collapse : collapse;
+		padding : 5px;
+	}
+</style>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+	<table>
+		<thead>
+			<tr>
+				<th>Person ID</th>
+				<th>Percentage</th>
+				<th>Type</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat = "data in result track by $index">
+				{{result}}
+				<td>
+					<div class="controls">
+						<select class="width" ng-model="data.id"  class ="form-control" ng-change="get_emp_data('tbody',data,$index)"  ng-options="option.id as option.id for option in id_dropdown">
+							<option value="" selected="">&nbsp;</option>
+						</select>
+						
+					</div>
+				</td>
+				<td >
+					<div class="controls">
+						<input ng-model="data.percentage" ng-blur="get_percentage('tbody',data,$index)" class ="form-control"/>
+					</div>
+				</td>
+				<td>
+					<input disabled ng-model="data.type" class ="form-control"/>
+					
+				</td>
+				<td>
+					<button ng-click="removeData($index,data)" ng-if ="data.type != 'primary_type'">Remove</button>
+				</td>
+			</tr>
+		</tbody>
+		<tfoot ng-if="result.length < 5">
+			<tr>
+				<td >
+					<div class="controls">
+						<select class="width" ng-model="emp.id"  class ="form-control" ng-change="get_emp_data('tfoot',emp)" ng-options="option.id as option.id for option in id_dropdown">
+							<option value="" selected="">&nbsp;</option>
+						</select>
+					</div>
+				</td>
+				<td >
+					<div class="controls">
+						<input ng-model="emp.percentage" ng-blur="get_percentage('tfoot')" class ="form-control"/>
+					</div>
+				</td>
+				<td>
+					<div class="controls">
+						
+						<input ng-model="emp.type" class ="form-control"/>
+					</div>
+				</td>
+				<td >
+					<button ng-click="addData()">ADD</button>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+
+
+</div>
+<script>
+	var app = angular.module('myApp', []);
+	app.controller('myCtrl', function($scope){
+	
+		$scope.personDetails = [
+				{"id":"001","type":"primary_type"},
+				{"id":"002","type":"primary_type"},
+				{"id":"003","type":"primary_type"},
+				{"id":"004","type":"primary_type"},
+				{"id":"005","type":"primary_type"},
+				{"id":"006","type":"primary_type"},
+				{"id":"007","type":"primary_type"},
+				{"id":"008","type":"primary_type"},
+				{"id":"009","type":"primary_type"},
+				{"id":"010","type":"primary_type"},
+		];
+	
+	console.log('prson',$scope.personDetails)
+	$scope.primaryPerson = [
+				{"id":"001","type":"primary_type"},
+				{"id":"002","type":"split_person-01"},
+				{"id":"003","type":"split_person-02"},
+				{"id":"004","type":"split_person-03"},
+				{"id":"005","type":"split_person-04"},
+				{"id":"006","type":"split_person-05"},
+				{"id":"007","type":"split_person-06"},
+			  ];
+   		
+   		
+   		$scope.result = [];
+		$scope.id_dropdown = [];
+   		$scope.emp = {};
+		
+   		$scope.emp.id_dropdown = [];
+   		//$scope.emp.type = "primary_type";
+   		var sum = 0;
+   		var sum_data = 0;
+		
+		
+   		for(var i=0; i<$scope.personDetails.length; i++){
+			$scope.id_dropdown.push($scope.personDetails[i])
+   			$scope.emp.id_dropdown.push($scope.personDetails[i])
+   		}
+   		
+   		$scope.addData = function(){
+			
+			
+			for(var i=0; i<$scope.result.length; i++){
+	   				
+				if($scope.emp.percentage > $scope.result[0].percentage){
+					alert("The total should be 100%");
+					$scope.emp.percentage = '';
+				}else{
+					$scope.result[0].percentage = $scope.result[0].percentage - $scope.emp.percentage;
+					//console.log('percentage',$scope.result[0].percentage);
+				}
+				break;
+			};
+			
+			if($scope.emp.id && $scope.emp.percentage && $scope.emp.type){
+				var new_object = {};
+				new_object.id = $scope.emp.id;
+				new_object.percentage = $scope.emp.percentage;
+				new_object.type = $scope.emp.type;
+				
+				$scope.result.push(new_object);
+				//$scope.tbody_array = angular.copy($scope.result);
+				
+				
+			}
+			
+   			//console.log('result',$scope.result);
+   			$scope.emp = {};
+   			$scope.emp['id_dropdown'] = angular.copy($scope.personDetails);
+			
+   		}
+   		
+		
+		
+		
+   		$scope.get_emp_data = function(param,emp_data,index){
+			//console.log('emp_data',emp_data);
+   			$scope.emp.percentage = 100;
+			$scope.emp.type = 'primary_type';
+			var split_count = 0;
+
+			for(var i=0; i<$scope.result.length; i++){
+				var first_indx = $scope.result[0];
+				
+				if(!first_indx){
+					$scope.emp.percentage = 100;
+				//	$scope.emp.type = 'primary_type';
+					
+				}else{
+					$scope.emp.percentage = '';
+					$scope.emp.type = $scope.primaryPerson[$scope.result.length].type;
+				};
+				
+				if(param == 'tfoot'){
+					var emp_id =  $scope.result[i].id;
+					if(emp_id == $scope.emp.id){
+						$scope.emp = {};
+						alert("Duplicate data already Exits");
+						return;
+					}
+				}else{
+					if(param == 'tbody'){
+						for(var a=0; a< $scope.result.length; a++){
+							var result_id = $scope.result[a].id;
+	       					
+							for(var b=a+1; b< $scope.result.length; b++){
+								if(result_id == $scope.result[b].id ){
+									alert("Data Already Exists");
+									$scope.result[index].id = '';
+									$scope.result[index].type = '';
+									$scope.result[index].percentage = '';
+									
+									return;
+								}else{
+									$scope.emp.type = "";
+								}
+							}
+						}
+					}
+				}
+			}
+   		}
+   		
+   		$scope.get_percentage = function(param,body_data, index){
+   			//console.log(param);
+   		
+   				if(param == 'tbody'){
+   					sum = 0;
+   					sum_data = 0;
+					
+   					var result_copy = angular.copy($scope.result);
+					//var skip_first = result_copy.shift();
+				
+						for(var i=1; i< result_copy.length; i++){
+	   						var emp_percentage = result_copy[i].percentage
+	   						sum = sum + Number(emp_percentage);
+		   					var result_data = Number(sum);
+		   					
+		   					//console.log('result_data',result_data);
+		   					
+		   					if(result_data > 100){
+								$scope.result[index].percentage = 0;
+								
+	   							alert("The total should be 100%'tbody'");
+								
+								result_copy.splice(index,1);
+								
+								for(var i=0; i< result_copy.length; i++){
+									//console.log(result_copy[i])
+									var em_percentage = result_copy[i].percentage;
+									//console.log('em_percentage',em_percentage);
+									
+									sum_data = sum_data + Number(em_percentage);
+									var final_data = 100 - sum_data;
+									//console.log('final_data',final_data);
+									
+									var first_index = angular.copy(result_copy[0].percentage);
+									//console.log('xj',first_index)
+									first_index = first_index + final_data;
+									//console.log('aftr',first_index);
+									
+									
+									$scope.result[0].percentage = first_index;
+								}
+	   						}else{
+								var first_index = angular.copy(result_copy[0].percentage);
+		   						first_index = 100 - result_data;
+								
+								$scope.result[0].percentage = first_index;
+							}
+						}
+					}
+   				
+   			}
+   		
+   		$scope.removeData = function(index, person_data){
+			
+			
+			$scope.result[0].percentage = $scope.result[0].percentage + Number($scope.result[index].percentage);
+			$scope.result[index].type = '';
+			$scope.result.splice(index,1);
+			for(var j=index; j< $scope.result.length; j++){
+				$scope.result[j].type = $scope.primaryPerson[j].type;
+			}
+   		}
+ 	});
+</script>
+</body>
+</html>

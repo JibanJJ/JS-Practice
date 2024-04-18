@@ -1,0 +1,744 @@
+<html>
+<head>
+<title>trail</title>
+</head>
+<body>
+	<b>Get the records where amount is lessthan 35000.</b><br><br>
+	<div id="test1"></div><br>
+	<b>Remove the duplicate records where the name and date is same.</b><br><br>
+	<div id="test2"></div><br>
+	<b> Display the records where name and amount is same.</b><br><br>
+	<div id="test3"></div><br>
+	<b>Group the salesorder records where key is name(create Object where key is name).</b><br><br>
+	<div id="test4"></div><br>
+	<b>Get all the Patients Details from an Appointments Array with doctor names</b><br><br>
+	<div id="test5"></div><br>
+	<b>today records</b><br><br>
+	<div id="test6"></div><br>
+	<b>tommorow records</b><br><br>
+	<div id="test7"></div><br>
+	<b>except the doctors leaves date & doctors show all the appointment</b><br><br>
+	<div id="test8"></div><br>
+	<div id="test9"></div><br>
+<script>
+	
+	/* for(var i=1;i<=60; i++){
+		if(i%3 == 0 && i%5 != 0){
+			console.log(i + ' fizz');
+			
+		}else if(i%5 == 0 && i%3 != 0){
+			console.log(i + ' buzz');
+			
+		}else if((i%3 == 0 && i%5 == 0)){
+			console.log(i + ' fizzbuzz');
+		}
+			
+	}*/
+	
+/*	var str = prompt();
+	var reversedStr = '';
+	var reversedword = '';
+	
+	var words = str.split(' ');
+	function reverse_str(str){
+		
+		// reverse a string
+		for (var i = str.length - 1; i >= 0; i--) {
+			reversedStr += str[i];
+		}
+		
+		// reverse a sentense
+		for (var i = words.length - 1; i >= 0; i--) {
+			reversedword += words[i] + ' ';
+		}
+	}
+	
+	reverse_str(str)
+	console.log('letters',reversedStr)
+	console.log(str.split('').reverse().join(''))
+	console.log('word',reversedword) */
+	
+	var salesOrder = [
+                        {
+                        "id": "S001",
+                        "date": "17/5/2022",
+                        "name": "John",
+                        "amount": 15000,
+                        "status": "Pending Billing"
+                        },
+                        {
+                        "id": "S002",
+                        "date": "19/5/2022",
+                        "name": "Smith",
+                        "amount": 77000,
+                        "status": "Pending Approval"
+                        },
+                        {
+                        "id": "S003",
+                        "date": "22/5/2022",
+                        "name": "Brown",
+                        "amount": 23000,
+                        "status": "Pending Approval"
+                        },
+                        {
+                        "id": "S004",
+                        "date": "19/5/2022",
+                        "name": "Williams",
+                        "amount": 46000,
+                        "status": "Billed"
+                        },
+                        {
+                        "id": "S005",
+                        "date": "17/5/2022",
+                        "name": "Johnson",
+                        "amount": 74000,
+                        "status": "Pending Approval"
+                        },
+                        {
+                        "id": "S006",
+                        "date": "18/5/2022",
+                        "name": "Jones",
+                        "amount": 15000,
+                        "status": "Pending Approval"
+                        },
+                        {
+                        "id": "S007",
+                        "date": "121/5/2022",
+                        "name": "Miller",
+                        "amount": 55000,
+                        "status": "Billed"
+                        },
+                        {
+                        "id": "S008",
+                        "date": "17/5/2022",
+                        "name": "Williams",
+                        "amount": 15000,
+                        "status": "Pending Approval"
+                        },
+                        {
+                        "id": "S009",
+                        "date": "18/5/2022",
+                        "name": "Jackson",
+                        "amount": 62000,
+                        "status": "Billed"
+                        },
+                        {
+                        "id": "S0010",
+                        "date": "18/5/2022",
+                        "name": "Thomas",
+                        "amount": 15000,
+                        "status": "Billed"
+                        },
+                        {
+                        "id": "S0011",
+                        "date": "19/5/2022",
+                        "name": "Moore",
+                        "amount": 25000,
+                        "status": "Pending Approval"
+                        },
+                        {
+                        "id": "S0012",
+                        "date": "20/5/2022",
+                        "name": "John",
+                        "amount": 44000,
+                        "status": "Billed"
+                        },
+                        {
+                        "id": "S0013",
+                        "date": "20/5/2022",
+                        "name": "Jackson",
+                        "amount": 54000,
+                        "status": "Pending Billing"
+                        },
+                        {
+                        "id": "S0014",
+                        "date": "22/5/2022",
+                        "name": "Brown",
+                        "amount": 14000,
+                        "status": "Billed"
+                        },
+                        {
+                        "id": "S0015",
+                        "date": "18/5/2022",
+                        "name": "Brown",
+                        "amount": 75000,
+                        "status": "Pending Billing"
+                        },
+                        {
+                        "id": "S0016",
+                        "date": "20/5/2022",
+                        "name": "Williams",
+                        "amount": 45000,
+                        "status": "Billed"
+                        },
+                        {
+                        "id": "S0017",
+                        "date": "21/5/2022",
+                        "name": "Jackson",
+                        "amount": 11000,
+                        "status": "Pending Approval"
+                        },
+                        {
+                        "id": "S0018",
+                        "date": "21/5/2022",
+                        "name": "Smith",
+                        "amount": 45000,
+                        "status": "Pending Approval"
+                        },
+                        {
+                        "id": "S0019",
+                        "date": "22/5/2022",
+                        "name": "John",
+                        "amount": 15000,
+                        "status": "Billed"
+                        },
+                        {
+                        "id": "S0020",
+                        "date": "17/5/2022",
+                        "name": "Jackson",
+                        "amount": 55000,
+                        "status": "Billed"
+                        },
+                        {
+                        "id": "S0021",
+                        "date": "19/5/2022",
+                        "name": "John",
+                        "amount": 23000,
+                        "status": "Pending Billing"
+                        },
+                        {
+                        "id": "S0022",
+                        "date": "18/5/2022",
+                        "name": "Williams",
+                        "amount": 12000,
+                        "status": "Billed"
+                        },
+                        {
+                        "id": "S0023",
+                        "date": "17/5/2022",
+                        "name": "Jackson",
+                        "amount": 77000,
+                        "status": "Billed"
+                        },
+                        {
+                        "id": "S0024",
+                        "date": "20/5/2022",
+                        "name": "John",
+                        "amount": 15000,
+                        "status": "Pending Billing"
+                        },
+                        {
+                        "id": "S0025",
+                        "date": "21/5/2022",
+                        "name": "John",
+                        "amount": 72000,
+                        "status": "Billed"
+                        },
+                        {
+                        "id": "S0026",
+                        "date": "18/5/2022",
+                        "name": "John",
+                        "amount": 52000,
+                        "status": "Pending Approval"
+                        },
+                        {
+                        "id": "S0027",
+                        "date": "20/5/2022",
+                        "name": "John",
+                        "amount": 44000,
+                        "status": "Pending Billing"
+                        },
+                        {
+                        "id": "S0028",
+                        "date": "22/5/2022",
+                        "name": "John",
+                        "amount": 65000,
+                        "status": "Billed"
+                        },
+                        {
+                        "id": "S0029",
+                        "date": "21/5/2022",
+                        "name": "Williams",
+                        "amount": 45000,
+                        "status": "Pending Billing"
+                        },
+                        {
+                        "id": "S0030",
+                        "date": "23/5/2022",
+                        "name": "John",
+                        "amount": 74000,
+                        "status": "Billed"
+                        },
+                        {
+                        "id": "S0031",
+                        "date": "19/5/2022",
+                        "name": "Jackson",
+                        "amount": 15000,
+                        "status": "Billed"
+                        },
+                        {
+                        "id": "S0032",
+                        "date": "17/5/2022",
+                        "name": "John",
+                        "amount": 7000,
+                        "status": "Pending Approval"
+                        },
+                        {
+                        "id": "S0033",
+                        "date": "22/5/2022",
+                        "name": "John",
+                        "amount": 5000,
+                        "status": "Billed"
+                        },
+                        {
+                        "id": "S0034",
+                        "date": "24/5/2022",
+                        "name": "Brown",
+                        "amount": 17000,
+                        "status": "Pending Approval"
+                        },
+                        {
+                        "id": "S0035",
+                        "date": "21/5/2022",
+                        "name": "Williams",
+                        "amount": 20000,
+                        "status": "Pending Billing"
+                        },
+                        {
+                        "id": "S0036",
+                        "date": "18/5/2022",
+                        "name": "John",
+                        "amount": 15000,
+                        "status": "Billed"
+                        },
+                        {
+                        "id": "S0037",
+                        "date": "18/5/2022",
+                        "name": "Jackson",
+                        "amount": 15000,
+                        "status": "Pending Billing"
+                        },
+                        {
+                        "id": "S0038",
+                        "date": "21/5/2022",
+                        "name": "Williams",
+                        "amount": 15000,
+                        "status": "Billed"
+                        },
+                        {
+                        "id": "S0039",
+                        "date": "21/5/2022",
+                        "name": "John",
+                        "amount": 22000,
+                        "status": "Billed"
+                        },
+                        {
+                        "id": "S0040",
+                        "date": "22/5/2022",
+                        "name": "John",
+                        "amount": 15000,
+                        "status": "Pending Billing"
+                        },
+                        {
+                        "id": "S0041",
+                        "date": "18/5/2022",
+                        "name": "John",
+                        "amount": 20000,
+                        "status": "Pending Approval"
+                        },
+                        {
+                        "id": "S0042",
+                        "date": "19/5/2022",
+                        "name": "John",
+                        "amount": 23000,
+                        "status": "Billed"
+                        },
+                        {
+                        "id": "S0043",
+                        "date": "17/5/2022",
+                        "name": "John",
+                        "amount": 25000,
+                        "status": "Billed"
+                        },
+                        {
+                        "id": "S0044",
+                        "date": "21/5/2022",
+                        "name": "John",
+                        "amount": 22000,
+                        "status": "Pending Approval"
+                        },
+                        {
+                        "id": "S0045",
+                        "date": "22/5/2022",
+                        "name": "John",
+                        "amount": 14000,
+                        "status": "Pending Approval"
+                        },
+                        {
+                        "id": "S0046",
+                        "date": "17/5/2022",
+                        "name": "John",
+                        "amount": 7000,
+                        "status": "Pending Approval"
+                        },
+                        {
+                        "id": "S0047",
+                        "date": "22/5/2022",
+                        "name": "Jackson",
+                        "amount": 5000,
+                        "status": "Pending Billing"
+                        },
+                        {
+                        "id": "S0048",
+                        "date": "20/5/2022",
+                        "name": "John",
+                        "amount": 15000,
+                        "status": "Billed"
+                        },
+                        {
+                        "id": "S0049",
+                        "date": "20/5/2022",
+                        "name": "Williams",
+                        "amount": 45000,
+                        "status": "Pending Approval"
+                        },
+                        {
+                        "id": "S0050",
+                        "date": "18/5/2022",
+                        "name": "Brown",
+                        "amount": 50000,
+                        "status": "paid"
+                        },
+                        {
+                        "id": "S0051",
+                        "date": "16/12/2022",
+                        "name": "Jones",
+                        "amount": 25000,
+                        "status": "Pending Billing"
+                        },
+                        {
+                        "id": "S0052",
+                        "date": "18/5/2022",
+                        "name": "John",
+                        "amount": 28000,
+                        "status": "Pending Approval"
+                        },
+                        {
+                        "id": "S0053",
+                        "date": "18/5/2022",
+                        "name": "John",
+                        "amount": 15000,
+                        "status": "Pending Billing"
+                        },
+                        {
+                        "id": "S0054",
+                        "date": "16/12/2022",
+                        "name": "John",
+                        "amount": 17000,
+                        "status": "Pending Approval"
+                        },
+                        {
+                        "id": "S0055",
+                        "date": "22/5/2022",
+                        "name": "John",
+                        "amount": 15000,
+                        "status": "Pending Billing"
+                        },
+                        {
+                        "id": "S0056",
+                        "date": "21/5/2022",
+                        "name": "John",
+                        "amount": 15000,
+                        "status": "Pending Approval"
+                        },
+                        {
+                        "id": "S0057",
+                        "date": "17/5/2022",
+                        "name": "Brown",
+                        "amount": 1000,
+                        "status": "Pending Approval"
+                        },
+                        {
+                        "id": "S0058",
+                        "date": "17/5/2022",
+                        "name": "Brown",
+                        "amount": 1000,
+                        "status": "Billed"
+                        },
+                        {
+                        "id": "S0059",
+                        "date": "5/2/2024",
+                        "name": "John",
+                        "amount": 15500,
+                        "status": "Pending Billing"
+                        },
+                        {
+                        "id": "S0060",
+                        "date": "5/2/2024",
+                        "name": "John",
+                        "amount": 18000,
+                        "status": "Pending Approval"
+                        }
+                    ];
+					
+					
+					//  Get the records where amount is lessthan 35000.
+					
+					var new_arr = [];
+					for(var i=0; i< salesOrder.length; i++){
+						var all_amount = salesOrder[i].amount;
+						
+						if(all_amount < 35000){
+							new_arr.push(salesOrder[i])
+						}
+					}
+					
+					document.getElementById('test1').innerHTML = JSON.stringify(new_arr);
+					
+					// Get the records where amount is lessthan 35000 and date is today date.
+					
+					var new_arr_b = [];
+					for(var i=0; i< salesOrder.length; i++){
+						var all_amount = salesOrder[i].amount;
+						var all_dt = salesOrder[i].date;
+						
+						var dates = new Date();
+						var today_date = dates.getDate() + '/' + ( dates.getMonth() + 1 ) + '/' + dates.getFullYear();
+						// console.log(today_date)		
+
+						if(all_amount < 35000 && today_date == all_dt){
+							new_arr_b.push(salesOrder[i])
+						}
+					}
+					
+					document.getElementById('test2').innerHTML = JSON.stringify(new_arr_b);
+					
+					// Remove the duplicate records where the name and date is same. 
+					
+					var new_arr_c = [];
+					for(var i=0; i< salesOrder.length; i++){
+						var all_name = salesOrder[i].name;
+						var all_dt = salesOrder[i].date;
+						
+						var count = 0;
+						// console.log(all_dt)		
+						for(var j= 0; j< salesOrder.length; j++){
+							if(all_name == salesOrder[j].name && all_dt == salesOrder[j].date){
+								count++
+							}
+						}
+						if(count == 1){
+							new_arr_c.push(salesOrder[i])
+						}
+						
+					}
+					
+					document.getElementById('test3').innerHTML = JSON.stringify(new_arr_c);
+					
+					//  Display the records where name and amount is same.
+					
+					var new_arr_d = [];
+					for(var i=0; i< salesOrder.length; i++){
+						var all_name = salesOrder[i].name;
+						var all_amount = salesOrder[i].amount;
+						
+						var count = 0;
+								
+						for(var j= i+1; j< salesOrder.length; j++){
+							if(all_name == salesOrder[j].name && all_amount == salesOrder[j].amount){
+								count++
+							}
+						}
+						if(count == 1){
+							new_arr_d.push(salesOrder[i])
+						}
+						
+					}
+					
+					document.getElementById('test3').innerHTML = JSON.stringify(new_arr_d);
+					
+					
+					// Group the salesorder records where key is name(create Object where key is name).
+					
+					var new_arr = {};
+					for(var i=0; i< salesOrder.length; i++){
+						var all_name = salesOrder[i].name;
+						
+						if(!new_arr[all_name]){
+							new_arr[all_name] = [];
+							
+						}
+						new_arr[all_name].push(salesOrder[i])
+						
+					}
+					
+					document.getElementById('test4').innerHTML = JSON.stringify(new_arr);
+					
+					
+					var Appointments = [
+							{id:1, patient:'Smith', doctor: 'D1', date:'13/5/2022', time:'11:30AM', paid:true},
+							{id:2, patient:'Johnson', doctor: 'D3', date:'13/5/2022', time:'11:30AM', paid:true},
+							{id:3, patient:'Williams', doctor: 'D5', date:'13/5/2022', time:'12:30AM', paid:false},
+							{id:4, patient:'Brown', doctor: 'D2', date:'26/12/2022', time:'11:30AM', paid:true},
+							{id:5, patient:'Jones', doctor: 'D1', date:'13/5/2022', time:'2:30PM', paid:true},
+							{id:6, patient:'Garcia', doctor: 'D2', date:'14/5/2022', time:'11:30AM', paid:false},
+							{id:7, patient:'Miller', doctor: 'D4', date:'13/5/2022', time:'11:30AM', paid:true},
+							{id:8, patient:'Davis', doctor: 'D1', date:'14/5/2022', time:'11:30AM', paid:true},
+							{id:9, patient:'Rodriguez', doctor: 'D5', date:'6/2/2024', time:'11:30AM', paid:true},
+							{id:10, patient:'Martinez', doctor: 'D3', date:'5/2/2024', time:'3:30PM', paid:false},
+					]; 
+					var Doctors = {
+							'D1':{name:"Thomas", designation:"Cardiothoracic", department:'Cardio Surgeon'},
+							'D2':{name:"Moore", designation:"Neurologist", department:'Neurology'},
+							'D3':{name:"Jackson", designation:"Dentist", department:'Dental Surgeon,'},
+							'D4':{name:"Lee", designation:"Cardiologist", department:'Cardiovascular Surgeon,'},
+							'D5':{name:"Thompson", designation:"Oncologist", department:'Oncologist surgeon'},
+					};
+					
+					// Get all the Patients Details from an Appointments Array with doctor names
+					
+					
+						
+					for(var j=0; j< Appointments.length; j++){
+						var doctor = Appointments[j].doctor;
+						// console.log(doctor)
+						 
+						
+						 Appointments[j].doctor =  Doctors[doctor].name;
+					}
+
+					document.getElementById('test5').innerHTML = JSON.stringify(Appointments);
+					
+					
+					// today records
+					
+					var new_arr_e = [];
+					for(var j=0; j< Appointments.length; j++){
+						var dates = new Date();
+						var today_date = dates.getDate() + '/' + ( dates.getMonth() + 1 ) + '/' + dates.getFullYear();
+						
+						var app_dates = Appointments[j].date;
+						
+						if(app_dates == today_date){
+							new_arr_e.push(Appointments[j])
+						}
+						
+					}
+
+					document.getElementById('test6').innerHTML = JSON.stringify(new_arr_e);
+					
+					// tommorow records
+					
+					var new_arr_f = [];
+					for(var j=0; j< Appointments.length; j++){
+						var dates = new Date();
+						var tomorrow = (dates.getDate() + 1) + '/' + ( dates.getMonth() + 1 ) + '/' + dates.getFullYear();
+						
+						
+						var app_dates = Appointments[j].date;
+						
+						if(app_dates == tomorrow){
+							new_arr_f.push(Appointments[j])
+						}
+						
+					}
+
+					document.getElementById('test7').innerHTML = JSON.stringify(new_arr_f);
+					
+					// except the doctors leaves date & doctors show all the appointment
+					
+					var Appointments = [
+							{id:1, patient:'Smith', doctor: 'D1', date:'4/1/2023', time:'11:30AM', paid:true}, 
+							{id:2, patient:'Johnson', doctor: 'D3', date:'4/1/2023', time:'11:30AM', paid:true},
+							{id:3, patient:'Williams', doctor: 'D5', date:'4/1/2023', time:'12:30AM', paid:false}, 
+							{id:4, patient:'Brown', doctor: 'D2', date:'4/1/2023', time:'11:31AM', paid:true},
+							{id:5, patient:'Jones', doctor: 'D1', date:'27/12/2022', time:'2:30PM', paid:true}, 
+							{id:6, patient:'Garcia', doctor: 'D2', date:'29/12/2022', time:'11:30AM', paid:false},
+							{id:7, patient:'Miller', doctor: 'D4', date:'29/12/2022', time:'11:30AM', paid:true},
+							{id:8, patient:'Davis', doctor: 'D1', date:'27/12/2022', time:'11:30AM', paid:true}, 
+							{id:9, patient:'Rodriguez', doctor: 'D5', date:'28/12/2022', time:'11:30AM', paid:true}, 
+							{id:10, patient:'Martinez', doctor: 'D3', date:'29/12/2022', time:'3:30PM', paid:false},
+					];
+
+					var leaves = [{doctorid:'D1',date:'4/1/2023'},{doctorid:'D4',date:'28/12/2022'},{doctorid:'D5',date:'28/12/2022'}];
+					
+					var new_arr_g = [];
+					for(var j=0; j< Appointments.length; j++){
+						var app_doctor = Appointments[j].doctor;
+						var app_date = Appointments[j].date;
+						
+						var index = leaves.findIndex((x) => x.doctorid == app_doctor)
+						
+						if(index != -1){
+							var leaves_dt = leaves[index].date;
+							
+							if(app_date != leaves_dt){
+								new_arr_g.push(Appointments[j])
+							}		
+						}else{
+							new_arr_g.push(Appointments[j])
+						}
+					}
+				
+				document.getElementById('test8').innerHTML = JSON.stringify(new_arr_g);
+				
+				
+				
+				
+				var watches = [
+						{ brand: "fossil",colour:["silver","black","blue","white","navy","green"], price_available:["10000","12000","7000","9500"]},
+						{ brand: "titan", colour:["black", "gold","silver","black","brown"],price_available:["6000","12000","7000","9500"]},
+						{ brand:"g-shock",colour:["navy", "blue","green"], price_available:["3000","4000","7000","4500"]},
+						{ brand: "apple", colour:["silver", "black", "gold"], price_available:["50000","70000","17000","9500"]},
+						{ brand: "casio", colour:["green","silver","black"], price_available:["1500","1900","7000","5500"]}
+				];
+				
+			/*	Output : Brands having colour black & price greater than/equals to 12000 :
+				{ 12000 : [															  
+					  {"brandName": "fossil","colour": "black","price": ["12000"]},
+					  {"brandName": "titan","colour": "black","price": ["12000"]},
+					  {"brandName": "apple","colour": "black","price": ["50000","70000","17000"]}
+					] 
+				} */
+				
+				var output = [];
+				var price = [];
+				var color = [];
+				var resultObject = {};
+				for(var i=0; i< watches.length; i++){
+					
+					
+					var result_obj = {
+						'brandName' : watches[i].brand,
+						'colour' : '',
+						'price' : [],
+					}
+					
+					for(var j=0; j< watches[i].colour.length; j++){
+							var colour = watches[i].colour[j];
+							
+						for(var k=0; k< watches[i].price_available.length; k++){
+							var prices = watches[i].price_available[k];
+							
+							if(colour == "black" && prices >= 12000){
+								result_obj.colour = colour;
+								result_obj.price.push(prices);
+							}
+						}
+					}
+					
+					if (result_obj.colour.length > 0) {
+					//	output.push(result_obj);
+						resultObject['12000'] = resultObject['12000'] || [];
+						resultObject['12000'].push(result_obj);
+					}	
+
+				}
+				//console.log('ot',result)
+				
+				document.getElementById('test9').innerHTML = JSON.stringify(resultObject);
+				
+				
+</script>
+</body>
+</html>

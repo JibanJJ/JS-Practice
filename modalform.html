@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>Modal form</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+.formContainer{
+	border : 1px solid;
+	width : 300px;
+	padding : 10px;
+}
+form{
+	display  : flex;
+	justify-content : center;
+}
+.login{
+	width : 100%;
+}
+h3{
+ text-align: center;
+ text-decoration : underline;
+}
+</style>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+Click here to open the login form : <button class="btn btn-primary" ng-click="openForm()">Click Here</button>
+	<form ng-show ="IsVisible">
+		<div class="formContainer">
+			<h3>Log in Form</h3>
+			Username :
+			<input type="text" ng-model="user.name" /> <br><br>
+			Password :
+			<input type="password" ng-model="user.password"/> <br><br>
+			<button class="btn btn-success login">Log in</button>  <br><br>
+			<input type="checkbox" />Remember me  <br><br>
+			<button class="btn btn-danger" ng-click="closeForm()">Cancel</button>
+			<a href="" />forgot password
+		</div>
+	</form>
+</div>
+<script>
+	var app = angular.module('myApp', []);
+	app.controller('myCtrl', function($scope){
+		$scope.openForm = function(){
+			$scope.IsVisible  = true;
+		}
+		$scope.closeForm = function(){
+			$scope.IsVisible  = false;
+		}
+	})
+</script>
+</body>
+</html>

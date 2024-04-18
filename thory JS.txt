@@ -1,0 +1,372 @@
+What are the possible ways to create objects in JavaScript
+
+// object literal
+	var obj = {'key' : value}
+    
+// constructor
+    
+    function trail(name, age){
+    	this.name = name,
+        this.age = age
+    }
+    const ans = new trail('John',24)
+    console.log(ans)
+    
+// using class
+    
+    class Create_obj{
+    	constructor(name, age){
+        	this.name = name,
+        	this.age = age
+        }
+    }
+    
+    const res = new Create_obj('John',24);
+    
+    console.log('res',res)
+    
+// Factory function
+    
+    function create_obj(name_data, age_data){
+    	return{
+        	name : name_data,
+            age : age_data
+        }
+    }
+    
+    const anns = create_obj('bubu',25)    
+    console.log(anns)
+	
+	
+2 What is prototype chain:
+	
+	In JavaScript, every object has a prototype, which is another object that it inherits properties and methods from.
+	This inheritance forms a chain, known as the prototype chain. When you try to access a property or method on an object,
+	JavaScript first looks for it directly on that object. If it doesn't find it there, it looks at the object's prototype, 
+	and then continues up the chain until it finds the property or method or reaches the end of the chain.
+	
+	Ex - 
+		function Person(name) {
+			this.name = name;
+		}
+
+		Person.prototype.sayHello = function() {
+			console.log("Hello, my name is " + this.name);
+		};
+
+		const person1 = new Person("Alice");
+		person1.sayHello();
+		
+3 What is the difference between Call, Apply and Bind
+
+	call(), apply(), and bind() are all methods used to manipulate the this context of functions, 
+	with slight differences in usage and argument passing.
+	
+	call() : 
+
+	It’s a predefined method in javascript.
+	This method invokes a method (function) by specifying the owner object.
+	call() method allows an object to use the method (function) of another object.
+
+	Example : 
+
+	function saySomething(message){
+		document.write(this.name + " is " + message);
+	}        
+	var person4 = {name:  "John"};
+	saySomething.call(person4, "awesome"); // John is awesome
+	
+	apply() :
+
+	The apply method is similar to the call() method. The only difference is that,
+	call() method takes arguments separately whereas, apply() method takes arguments as an array.
+
+	Example : 
+
+	function saySomething(message){
+		document.write(this.name + " is " + message);
+	}        
+	var person4 = {name:  "John"};
+	saySomething.apply(person4, ["awesome"]); // John is awesome
+	
+	bind(): 
+
+	This method returns a new function, where the value of “this” keyword will be bound to the owner object, which is provided as a parameter.
+
+	Example : 
+		
+		var bikeDetails = {
+				displayDetails: function(registrationNumber,brandName){
+				document.write(this.name+ " , "+ "bike details: "+ registrationNumber + " , " + brandName);
+			}
+		}
+
+	  var person1 = {name:  "Vivek"};
+
+	  var detailsOfPerson1 = bikeDetails.displayDetails.bind(person1, "TS0122", "Bullet");
+	  detailsOfPerson1();
+	  
+
+4. What is a higher order function :
+ 
+	  A higher-order function is a function that either takes one or more functions as arguments or returns a function as its result.
+	  
+	  Ex-
+	  
+	  function higherOrderFunction(callback) {
+		console.log("Before callback");
+		callback();
+		console.log("After callback");
+	  }
+
+	  function callbackFunction() {
+		console.log("Inside callback function");
+	  }
+
+	 higherOrderFunction(callbackFunction); // Here it is a HOF (recieving a function as an argument);
+	 
+	 Ex-
+		function createMultiplier(factor) {
+			return function(number) {
+				return number * factor;
+			};
+		}
+
+	  const double = createMultiplier(2);
+	  const triple = createMultiplier(3);
+
+	  console.log(double(5)); // Output: 10
+	  console.log(triple(10)); // Output: 15 // Here "createMultiplier" it is a HOF (returning a new function)
+	  
+	  
+5. Unarry : 
+
+	  A unary function is a function that takes exactly one argument, used to perform operations or computations on a single input value.
+	  
+	  function square(x) {
+		return x * x;
+	  }
+	  console.log(square(5)); // Output: 25
+	  
+	
+6. What is the currying function :
+	
+	 currying function :
+	 
+		It is a technique in functional programming, that transforms the function of multiple arguments into several functions of a single argument in sequence.
+		By using the currying technique, we do not change the functionality of a function, we just change the way it is invoked.
+
+		Example : function calculateVolume(length) {
+					return function (breadth) {
+						return function (height) {
+							return length * breadth * height;
+						}
+					}
+				}
+		console.log(calculateVolume(4)(5)(6));
+
+		Why is currying useful in JavaScript :
+
+		It helps us to create a higher-order function
+		It reduces the chances of error in our function by dividing it into multiple smaller functions that can handle one responsibility.
+		It is very useful in building modular and reusable code
+		It helps us to avoid passing the same variable multiple times
+		It makes the code more readable
+
+7. What is IIFE(Immediately Invoked Function Expression)
+
+	IIFE - immediately invoked function expression
+
+	example - 	(function abc(a, b){
+					return c = a * b;
+				})(3,4)
+				console.log(c)
+				
+8. How do you redeclare variables in switch block without an error
+
+	let someVariable = 'b'
+	  switch (someVariable) {
+		case 'A':
+			var message = 'Case A';
+			console.log(message);
+			break;
+		case 'B':
+			var message = 'Case B'; // Redeclaration allowed within a different case
+			console.log(message);
+			break;
+		default:
+			var message = 'Default case'; // Redeclaration allowed within a different case
+			console.log(message);
+	}
+	
+9. How do you detect caps lock key turned on or not in js
+
+	var input = document.createElement('input');
+	input.addEventListener('keydown', function(e) {
+		var capsLockOn = e.getModifierState && e.getModifierState('CapsLock');
+		console.log(capsLockOn)
+		if (capsLockOn) {
+			console.log('Caps Lock is ON');
+		} else {
+			console.log('Caps Lock is OFF'); 
+		}
+		console.log('Entering')
+	});
+
+	document.body.appendChild(input)
+	
+10. What is a cookie, Why do you need a Cookie, What are the options in a cookie, How do you delete a cookie
+
+	Cookies means data, To remember the user inormation data on your computer we are using cookies,
+	The first time a user arrives to the web page, he/she will be asked to fill in his/her name. The name is then stored in a cookie.
+	The next time the user arrives at the same page, he/she will get a welcome message.
+		
+	Create,Read,Change and Delete these are the options in a cookie.
+	
+	for Delete a cookie - Just set the expires parameter to a past date:
+	
+	ex - document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+	
+	
+11. can detect a user is using from a mobile pr not
+	
+	function isMobileDevice() {
+		return /Mobi|Android/i.test(navigator.userAgent);
+	}
+
+	if (isMobileDevice()) {
+		console.log("You are using a mobile device.");
+	} else {
+		console.log("You are not using a mobile device.");
+	}
+
+12. Get the height and width of a image tgrough JS
+
+	var img = document.getElementById('yourImageId');
+	var width = img.naturalWidth;
+	var height = img.naturalHeight;
+	
+13. Difference between Object.values and Object.entries
+	
+	const obj = { a: 1, b: 2, c: 3 };
+	const values = Object.values(obj);
+	console.log(values); // Output: [1, 2, 3]
+	
+	const obj = { a: 1, b: 2, c: 3 };
+	const entries = Object.entries(obj);
+	console.log(entries); // Output: [ ["a", 1], ["b", 2], ["c", 3] ]
+	
+	Object.values() returns an array of the values of the object's properties.
+    Object.entries() returns an array of arrays, where each nested array contains a key-value pair from the object.
+	
+14. To get the list of object keys
+
+	const obj = { a: 1, b: 2, c: 3 };
+	const keys = Object.keys(obj);
+	console.log(keys); // Output: ["a", "b", "c"]
+
+15.What is the difference between uneval and eval
+
+	In summary, while both eval() and uneval() deal with JavaScript code in some form, 
+	they have different purposes and should be used carefully. eval() should generally be
+	avoided in production code due to its security and performance implications,
+	while uneval() is rarely used due to its limited utility and lack of support.
+
+
+
+
+											------------ JAVASCRIPT (UI RELATED) ------------
+
+// fetching data from API
+
+	fetch('https://fakestoreapi.com/products/1')
+	.then(x => x.json())
+	.then(res => {
+		console.log(res)
+	});
+	
+// Birthday Reminder In Dates
+
+	var date = new Date();
+	date.setHours(1)
+	date.setMinutes(2)
+	date.setSeconds(10);
+
+
+	var ss = date.getSeconds();
+	var min = date.getMinutes();
+	var hr = date.getHours();
+	console.log(min)
+	var stop = setInterval(function(){
+	//console.log(date)
+		ss = ss - 1
+		console.log('ss',ss)
+		if(ss <= 0){
+			ss = 10;
+			min = min - 1;
+			console.log('min',min)
+		   if(min <= 0){
+			  min = 2;
+			  hr = hr - 1;
+			  console.log('hr',hr)
+				if(hr == 0){
+					console.log('Yooo');
+					clearInterval(stop)
+				}
+			}
+		}
+	},1000)
+	
+// Age Calculator
+
+  var date_1 = '2000/3/15'
+  var date_2 = new Date();
+  
+  var in_time = new Date(date_1)
+  console.log(in_time)
+  
+  var total_time = date_2.getTime() - in_time;
+  
+  var total_days = Math.floor(total_time / (1000 * 60 * 60 * 24))
+    console.log(total_days)
+ 
+   
+  var total_years = Math.floor(total_days / 365);
+  console.log(total_years)
+
+  var total_months = Math.floor((total_days % 365) / 30);
+  console.log(total_months) 
+
+  var total_days = Math.floor((total_days % 365) % 30);
+  console.log(total_days)
+  
+// Generate OTP and Captcha
+
+  var submit = document.getElementById('btn')
+  submit.addEventListener('click', function(){	
+      var otp = '';
+      var num = '1234567890'
+      var char_ = 'abcdefghijklmnopqrstuvwxyz'
+      for(var i=0; i< 5; i++){
+          var numer = Math.floor(Math.random() * num.length);
+          var str = Math.floor(Math.random() * char_.length);
+
+           if (i % 2 === 0) {
+              otp += char_.charAt(str)
+           }else{
+              otp += num.charAt(numer)
+           }
+      }
+      console.log(otp)
+  })
+
+// Input a number and convert it to INR currency format
+
+	var num = 25000;
+	
+    var format_num = new Intl.NumberFormat('en-IN', {
+    	style: 'currency',
+        currency: 'INR'
+    }).format(num);
+	
+    console.log(format_num);

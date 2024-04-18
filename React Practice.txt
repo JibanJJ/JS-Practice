@@ -1,0 +1,407 @@
+-- Current TIme --
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+  </head>
+  <body>
+
+    <div id="mydiv"></div>
+
+    <script type="text/babel">
+     // const { useState } = React;
+     let time_only = '';
+     
+     function abc(){
+       let time = new Date();
+       var ss = time.getSeconds();
+       var mm = time.getMinutes();
+       var hh = time.getHours();
+
+       ss = (ss < 10) ? '0' + ss : ss;
+       mm = (mm < 10) ? '0' + mm : mm;
+       hh= (hh < 10) ? '0' + hh : hh;
+       
+       var day_night = (hh >= 12) ? 'PM' : 'AM'
+       time_only = hh + ':' + mm + ':' + ss + ' ' + day_night
+
+    }
+    abc()
+    setInterval(function(){
+    	 abc();
+         root.render(<Hello />)
+    },1000)
+      function Hello() {
+      return <div>
+       		<p>Now time is {time_only}</p>
+       </div>
+      }
+      
+      const container = document.getElementById('mydiv');
+      const root = ReactDOM.createRoot(container);
+      root.render(<Hello />)
+    </script>
+
+  </body>
+</html>
+
+
+
+------ FORM -----
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+
+    <div id="mydiv"></div>
+	
+    <script type="text/babel">
+    const {useState} = React
+      function Hello() {
+      
+      const [item, setItem] = useState({uname : '', pass : '', age : '', email : ''})
+      const [data, setData] = useState([])
+      
+      
+      const handleChange = (event) =>{
+      	const name = event.target.name;
+        console.log('name',name)
+        const value = event.target.value;
+        console.log('value',value)
+        setItem(x => ({...x, [name]: value}))
+      
+      }
+      
+      
+      const handleSubmit = (event) =>{
+      	event.preventDefault();
+        console.log(item)
+        if(!item.uname){
+        	alert('please fill name')
+        }else{
+        	setData(x => ([...x, item]))
+            setItem({uname : '', pass : '', age : '', email : ''})
+        }
+      }
+        return <div>
+        	<form onSubmit={handleSubmit}>
+            	<label>Name : </label> 
+            	<input type="text" 
+                onChange={handleChange}
+                name="uname"
+               
+                value={item.uname}
+                /><br/><br/>
+                
+                <label>Password : </label> 
+                <input type="password" 
+                onChange={handleChange}
+                name="pass"
+                value={item.pass}/><br/><br/>
+                
+                <label>Age : </label> 
+                <input type="number" 
+                onChange={handleChange}
+                name="age"
+                value={item.age}/><br/><br/>
+                
+                <label>Email : </label> 
+                <input type="email" 
+                onChange={handleChange}
+                name="email"
+                value={item.email}/><br/><br/>
+                
+                <button>ADD</button>
+            </form>
+            <Table data={data}/>
+        </div>;
+      }
+	 
+     function Table({data}){
+     	return <div>
+        	<table border="1">
+            	<thead>
+                	<tr>
+                    	<th>Name</th>
+                        <th>Password</th>
+                        <th>Age</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                	 {data.map((x, index) => (
+                     	<tr key={index}>
+                          <td>{x.uname}</td>
+                          <td>{x.pass}</td>
+                          <td>{x.age}</td>
+                          <td>{x.email}</td>
+                		</tr>
+                     ))}
+                </tbody>
+            </table>
+        </div>
+     }
+      const container = document.getElementById('mydiv');
+      const root = ReactDOM.createRoot(container);
+      root.render(<Hello />)
+    </script>
+
+  </body>
+</html>
+
+
+// form submit with edit, save and delete functionality
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+
+    <div id="mydiv"></div>
+
+    <script type="text/babel">
+      const { useRef } = React;
+      const { useState } = React;
+       
+      function Hello() {
+      const f_name = useRef();
+      const l_name = useRef();
+      const [data, setData] = useState([]);
+      const [editIndex, setEditIndex] = useState(null);
+      
+        const handleSubmit = (e) =>{
+          e.preventDefault();
+          const formData = {
+            firstName : f_name.current.value,
+            LastName : l_name.current.value
+          }
+          console.log(data)
+          setData(prevData => [...prevData, formData])
+          
+          f_name.current.value = '';
+          l_name.current.value = '';
+        }
+      
+      const deleteItem = (index) =>{
+      	console.log(index + ' yuu ')
+        setData((x) => x.filter((item, i) => i !== index))
+      }
+      const editItem = (index) =>{
+        setEditIndex(index); 
+      	f_name.current.value = data[index].firstName;
+        l_name.current.value = data[index].LastName;
+      }
+      
+      const saveEditData = () =>{
+         const editedData = {
+            firstName : f_name.current.value,
+            LastName : l_name.current.value
+          }
+         
+          setData(prevData => {
+            const newData = [...prevData];
+            newData[editIndex] = editedData;
+            return newData;
+          });
+           
+          setEditIndex(null); 
+          f_name.current.value = '';
+          l_name.current.value = '';
+      }
+        return (
+        <div>
+        	<form>
+            	<label>first Name : </label>
+            	<input type="text" ref={f_name}/><br/><br/>
+                <label>last Name : </label>
+                <input type="text" ref={l_name}/><br/><br/>
+            </form>
+           
+            {editIndex !== null ? ( 
+              <button onClick={() => saveEditData()}>Save</button>
+            ) : (
+              <button onClick={handleSubmit}>Submit</button>
+            )}
+			<div>
+            	<table>
+                	<thead>
+                    	<tr>
+                        	<th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {data.map((item, index) =>(
+                            <tr key={index}>
+                            	<td>{item.firstName}</td>
+                                <td>{item.LastName}</td>
+                                <td>
+                                  <button onClick={() => deleteItem(index)}>Delete</button>
+                                  <button onClick={() => editItem(index)}>Edit</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        );
+      }
+
+      const container = document.getElementById('mydiv');
+      const root = ReactDOM.createRoot(container);
+      root.render(<Hello />)
+    </script>
+
+  </body>
+</html>
+
+// calculator 
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+	<style>
+    	.main_container{
+        	
+            height: 200px;
+            width: 200px;
+        }
+        .display_comp {
+        	padding: 5px;
+        }
+        .display_comp input{
+        	margin: 0 0 5px 0;
+            padding: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .buton_comp {
+        	display: flex;
+        	flex-wrap: wrap;
+        }
+        .buton_comp button{
+        	margin: 5px;
+            padding: 5px;
+            width: calc(25% - 10px);
+        }
+    </style>
+    <div id="mydiv"></div>
+
+    <script type="text/babel">
+     
+      const { useState } = React;
+      
+      
+      function Hello() {
+      
+      const [inputValue, setInputValue] = useState('');
+      const buttons = ['C','7','8','9','4','5','6','/','1','2','3','*','0','-','+','='];
+      
+      
+      const clickedBtn = (btnValue) =>{
+      	
+        if(btnValue == 'C'){
+        	setInputValue('')
+        }else if(btnValue == '='){
+        	const res = eval(inputValue)
+            setInputValue(res);
+        }else{
+        	setInputValue(prev => prev +  btnValue)
+        }
+        
+      }
+        return <>
+                  <div className="main_container">
+                      <div className="display_comp">
+                          <input type="text" readOnly value={inputValue} />
+                      </div>
+                      <div className="buton_comp">
+                      	{buttons.map((btn, index) => (
+                        	<button key={index} onClick={() => {clickedBtn(btn)}}>{btn}</button>
+                        ))}
+                      </div>
+                  </div>
+              </>
+      }
+
+      const container = document.getElementById('mydiv');
+      const root = ReactDOM.createRoot(container);
+      root.render(<Hello />)
+    </script>
+
+  </body>
+</html>
+
+-- stopwatch --
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+
+    <div id="mydiv"></div>
+	
+    <script type="text/babel">
+      const { useState } = React;
+     
+      function Hello() {
+        
+        const [timer, setTimer] = useState(0);
+        const [showBtn, setShowBtn] = useState(true);
+        const handleStart = () =>{
+        	setShowBtn(false);
+        }
+        const handlePause = () =>{
+        	
+        }
+        const handleReset = () =>{
+        	setShowBtn(true)
+        }
+        return (
+          <div>
+            <p>Duration : {timer}</p>
+            {showBtn === true ? (
+            	<button onClick={handleStart}>Start</button>
+            ) : (
+            	<>
+            		<button onClick={handlePause}>Pause</button>
+                	<button onClick={handleReset}>Reset</button>
+                </>
+            )}
+          </div>
+        )
+      }
+
+      const container = document.getElementById('mydiv');
+      const root = ReactDOM.createRoot(container);
+      root.render(<Hello />)
+
+    </script>
+
+  </body>
+</html>

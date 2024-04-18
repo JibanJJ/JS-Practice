@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+<style>
+	table {
+		border-collapse: collapse;
+		width: 50%;
+	}
+	table, th, td {
+		border: 1px solid;
+	}
+	th{
+		height: 50px;
+		background-color: green;
+		color: white;
+	}
+	
+</style>
+<div ng-app="myApp" ng-controller="formCtrl">
+	<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>SL No.</th>
+			<th>Designation Name</th>
+			<th>Employee Name</th>
+			<th>EmployeeId</th>
+			<th>JoinedDate</th>
+			<th>Add</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat = "data in result">
+			<td>{{$index+1}}</td>
+			<td>
+				<select ng-model="data.designationname" ng-change="tbody_get_names(data)" ng-options="option.DesignationID as option.DesignationName for option in dup_emp_names">
+				</select>
+				
+			</td>
+			<td>
+				<select ng-model="data.emp_name" ng-change="tbody_get_all_data(data)" ng-options="option.EmployeeId as option.EmployeeName for option in data.names_dropdown">
+				</select>
+				
+			</td>
+			<td>{{data.EmployeeId}}</td>
+			<td>{{data.JoinedDate}}</td>
+			<td>
+				<a ng-click="RemoveData($index)">Remove</a>
+			</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td>{{emp.sno}}</td>
+			<td>
+				<select  ng-model="emp.designationname" ng-change="get_emp_names_data(emp)" ng-options="option.DesignationID as option.DesignationName for option in dup_emp_names">
+					<option value="" selected="">&nbsp;</option>
+				</select>
+			</td>
+			<td>
+				<select ng-model="emp.emp_name" ng-change="get_all_data(emp)" ng-options="option.EmployeeId as option.EmployeeName for option in emp.names_dropdown">
+					<option value="" selected="">&nbsp;</option>
+				</select>
+			</td>
+			<td>{{emp.EmployeeId}}</td>
+			<td>{{emp.JoinedDate}}</td>
+			<td>
+				<button ng-click="add_data()">Add Data</button>
+			</td>
+		</tr>
+	</tfoot>
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('formCtrl', function($scope) {
+    
+	$scope.Employee_details = [
+         {"EmployeeId":"68150","EmployeeName":"Margo Meddemmen","DesignationID":1,"DesignationName":"Developer","JoinedDate":"9/5/2022"},
+       	 {"EmployeeId":"531","EmployeeName":"Tris Mc Cahey","DesignationID":1,"DesignationName":"Developer","JoinedDate":"5/20/2019"},
+       	 {"EmployeeId":"546","EmployeeName":"Aida Kemwall","DesignationID":2,"DesignationName":"Manager","JoinedDate":"9/6/2022"},
+       	 {"EmployeeId":"1341","EmployeeName":"Rochelle Merrisson","DesignationID":2,"DesignationName":"Manager","JoinedDate":"10/7/2019"},
+       	 {"EmployeeId":"96","EmployeeName":"Gordie Gilbee","DesignationID":3,"DesignationName":"Functional","JoinedDate":"8/26/2022"},
+       	 {"EmployeeId":"67122","EmployeeName":"Cross Battie","DesignationID":3,"DesignationName":"Functional","JoinedDate":"9/16/2019"},
+       	 {"EmployeeId":"24","EmployeeName":"Isa Boobier","DesignationID":1,"DesignationName":"Developer","JoinedDate":"4/7/2021"},
+       	 {"EmployeeId":"446","EmployeeName":"Christalle Lodin","DesignationID":3,"DesignationName":"Functional","JoinedDate":"3/3/2020"},
+       	 {"EmployeeId":"5","EmployeeName":"Blythe Gandy","DesignationID":4,"DesignationName":"BusinessAnalyst","JoinedDate":"1/17/2021"},
+       	 {"EmployeeId":"2558","EmployeeName":"Bartlet Deaves","DesignationID":3,"DesignationName":"Functional","JoinedDate":"11/26/2020"},
+       	 {"EmployeeId":"575","EmployeeName":"Donni Pettecrew","DesignationID":3,"DesignationName":"Functional","JoinedDate":"3/17/2022"},
+       	 {"EmployeeId":"636","EmployeeName":"Bink Glas","DesignationID":3,"DesignationName":"Functional","JoinedDate":"7/19/2021"},
+       	 {"EmployeeId":"89","EmployeeName":"Giordano Newdick","DesignationID":1,"DesignationName":"Developer","JoinedDate":"1/11/2020"},
+       	 {"EmployeeId":"72479","EmployeeName":"Ardella Denford","DesignationID":3,"DesignationName":"Functional","JoinedDate":"9/29/2022"},
+       	 {"EmployeeId":"7","EmployeeName":"Dennie Cyseley","DesignationID":2,"DesignationName":"Manager","JoinedDate":"8/29/2020"},
+       	 {"EmployeeId":"31032","EmployeeName":"Dionne Longwood","DesignationID":3,"DesignationName":"Functional","JoinedDate":"8/7/2019"},
+       	 {"EmployeeId":"768","EmployeeName":"Melba Nolli","DesignationID":3,"DesignationName":"Functional","JoinedDate":"1/8/2020"},
+       	 {"EmployeeId":"4329","EmployeeName":"Druci Arnason","DesignationID":1,"DesignationName":"Developer","JoinedDate":"2/13/2022"},
+       	 {"EmployeeId":"4601","EmployeeName":"Dicky Bellringer","DesignationID":1,"DesignationName":"Developer","JoinedDate":"1/6/2020"},
+       	 {"EmployeeId":"8468","EmployeeName":"Carney Veevers","DesignationID":1,"DesignationName":"Developer","JoinedDate":"7/24/2021"},
+       	 {"EmployeeId":"2","EmployeeName":"Georgette Di Iorio","DesignationID":4,"DesignationName":"BusinessAnalyst","JoinedDate":"4/16/2021"},
+       	 {"EmployeeId":"6","EmployeeName":"Clary Goreisr","DesignationID":3,"DesignationName":"Functional","JoinedDate":"8/11/2022"},
+       	 {"EmployeeId":"6","EmployeeName":"Gilligan Gilks","DesignationID":3,"DesignationName":"Functional","JoinedDate":"3/2/2020"},
+       	 {"EmployeeId":"35040","EmployeeName":"Pattin Bausmann","DesignationID":4,"DesignationName":"BusinessAnalyst","JoinedDate":"7/23/2021"},
+       	 {"EmployeeId":"411","EmployeeName":"Orazio Sandyfirth","DesignationID":4,"DesignationName":"BusinessAnalyst","JoinedDate":"8/4/2019"},
+       	 {"EmployeeId":"9076","EmployeeName":"Fonsie Bernollet","DesignationID":2,"DesignationName":"Manager","JoinedDate":"9/12/2020"},
+       	 {"EmployeeId":"29307","EmployeeName":"Orland Ramsden","DesignationID":2,"DesignationName":"Manager","JoinedDate":"10/4/2022"},
+       	 {"EmployeeId":"64664","EmployeeName":"Silvano Malsher","DesignationID":1,"DesignationName":"Developer","JoinedDate":"6/2/2021"},
+       	 {"EmployeeId":"109","EmployeeName":"Ulla Wattins","DesignationID":3,"DesignationName":"Functional","JoinedDate":"3/26/2021"},
+       	 {"EmployeeId":"229","EmployeeName":"Ambrosio Privost","DesignationID":2,"DesignationName":"Manager","JoinedDate":"7/26/2022"}
+	  ];
+	
+	$scope.dup_emp_names = [];
+	$scope.names_dropdown = [];
+	$scope.emp = {};
+	$scope.emp['sno'] = 1;
+	$scope.tbody_data = [];
+	$scope.result = [];
+	
+	for(var i=0; i<$scope.Employee_details.length; i++){
+		var deg_names = $scope.Employee_details[i].DesignationName;
+		var count = 0;
+		
+		for(var j=i+1; j<$scope.Employee_details.length; j++){
+			if(deg_names == $scope.Employee_details[j].DesignationName){
+				count++;
+			}
+		}
+		if(count == 1){
+			var obj = {};
+			obj.DesignationID = $scope.Employee_details[i].DesignationID;
+			obj.DesignationName = $scope.Employee_details[i].DesignationName;
+			
+			$scope.dup_emp_names.push(obj)
+		}
+	}
+	
+	
+	$scope.get_emp_names_data = function(data){
+		
+		$scope.array3 = [];
+		
+		for(var i=0; i<$scope.Employee_details.length; i++){
+			if(data.designationname == $scope.Employee_details[i].DesignationID){
+				
+				$scope.array3.push($scope.Employee_details[i]);
+			}
+		}
+		data.names_dropdown = [];
+		data.names_dropdown = data.names_dropdown.concat($scope.array3);
+		
+		data.EmployeeId = '';
+		data.JoinedDate ='';
+	}
+	
+	$scope.get_all_data = function(data){
+	console.log(data.designationname)
+		var index = $scope.Employee_details.findIndex((x) => x.EmployeeId == data['emp_name']);
+		
+		if(index!=-1){
+			var obj =$scope.Employee_details[index];
+			data.EmployeeId = angular.copy(obj.EmployeeId);
+			data.JoinedDate ='';
+			data.JoinedDate = angular.copy(obj.JoinedDate);
+		}
+	//	$scope.get_emp_names_data(data)
+	}
+	
+	$scope.add_data = function(){
+		var sno = 0;
+		sno = angular.copy($scope.emp['sno']);
+		
+		$scope.result.push($scope.emp);
+		$scope.emp = {};
+		
+		$scope.emp['sno'] = sno + 1;
+	}
+	$scope.RemoveData = function (index){	
+   			$scope.result.splice(index, 1);
+			
+		$scope.emp = {};
+		$scope.emp['sno'] = $scope.result.length + 1;	
+	}
+	
+	$scope.tbody_get_names = function(data){
+		console.log(data.designationname);
+		$scope.array3 = [];
+		for(var i=0; i<$scope.Employee_details.length; i++){
+			if(data.designationname == $scope.Employee_details[i].DesignationID){
+				$scope.array3.push($scope.Employee_details[i]);
+			}
+		}
+		data.names_dropdown = [];
+		data.names_dropdown = data.names_dropdown.concat($scope.array3);
+		
+		data.EmployeeId = '';
+		data.JoinedDate ='';
+	}
+	
+	$scope.tbody_get_all_data = function(data){
+		var index = $scope.Employee_details.findIndex((x) => x.EmployeeId == data['emp_name']);
+		
+		if(index!=-1){
+			var obj =$scope.Employee_details[index];
+			data.EmployeeId = angular.copy(obj.EmployeeId);
+			data.JoinedDate ='';
+			data.JoinedDate = angular.copy(obj.JoinedDate);
+		}
+	}
+});
+</script>
+
+</body>
+</html>

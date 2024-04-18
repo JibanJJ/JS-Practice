@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<style>
+	#pause{
+    	display: none;
+    }
+    #clear{
+    	display: none;
+    }
+    .bll{
+    	display: flex;
+        gap : 5px;
+    }
+</style>
+<body>
+
+<h2>STOPWATCH TIMER</h2>
+
+<p id="demo">00:00:00</p>
+
+<div class="bll">
+	<button id="str">Start</button>
+	<button id="pause">Pause</button>
+	<button id="clear">Clear</button>
+</div>
+
+
+<script>
+	//var count = document.getElementById('demo').value;
+    var start_btn = document.getElementById('str');
+    var pause_btn = document.getElementById('pause');
+    var clear_btn = document.getElementById('clear');
+    var countElement = document.getElementById('demo');
+    var starttt;
+    var show;
+    
+    var sec = 0;
+    var mm = 0;
+    var hr = 0;
+    
+    function startWatch(){
+    	sec += 1;
+        
+        if (sec >= 60) {
+            sec = 0;
+            mm += 1;
+        }
+        
+        if (mm >= 60) {
+            mm = 0;
+            hr += 1;
+        }
+        
+        var secString = sec < 10 ? '0' + sec : sec;
+        var mmString = mm < 10 ? '0' + mm : mm;
+        var hrString = hr < 10 ? '0' + hr : hr;
+        
+        countElement.textContent = hrString + ':' + mmString + ':' + secString;
+    }
+    start_btn.addEventListener('click',function(){
+    
+    start_btn.style.display = 'none';
+    pause_btn.style.display = 'block';
+    clear_btn.style.display = 'block';
+    
+    	console.log('clcicking');
+        starttt = setInterval(function(){
+        	startWatch()
+        },1000);
+    });
+    
+    
+    pause_btn.addEventListener('click',function(){
+    start_btn.style.display = 'block';
+    	console.log('pause')
+        clearInterval(starttt)
+    });
+    
+	clear_btn.addEventListener('click',function(){
+    
+    start_btn.style.display = 'block';
+    pause_btn.style.display = 'none';
+    clear_btn.style.display = 'none';
+    
+    	clearInterval(starttt)
+    	sec = 0;
+        mm = 0;
+        hr = 0;
+        countElement.textContent = '00:00:00';
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.main_container{
+	height:350px;
+    width: 250px;
+
+}
+.result_{
+	background-color: white;
+    height: 30%;
+    width: 100%;
+    border-radius: 15px 15px 0 0;
+}
+.calc_{
+	background-color: grey;
+    height: 70%;
+    width: 100%;
+    border-radius: 0 0 15px 15px;
+    display: flex;
+    justify-content: space-between;
+}
+.num, #result, #clear{
+	height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    
+    margin: 10px 7px 20px 7px;
+}
+#result:hover{
+	cursor : pointer;
+}
+</style>
+</head>
+<body>
+
+
+<div class="main_container">
+	<div class="result_">
+    	<p id="demo"></p>
+    </div>
+    <div class="calc_">
+    	<div class="f_row">
+        	<div class="num">7</div>
+            <div class="num">4</div>
+            <div class="num">1</div>
+            <div class="num">0</div>
+        </div>
+        <div class="s_row">
+        	<div class="num">8</div>
+            <div class="num">5</div>
+            <div class="num">2</div>
+            <div class="num">.</div>
+        </div>
+        <div class="t_row">
+        	<div class="num">9</div>
+            <div class="num">6</div>
+            <div class="num">3</div>
+            <div id="clear">AC</div>
+        </div>
+        <div class="fth_row">
+        	<div class="num">+</div>
+            <div class="num">-</div>
+            <div class="num">*</div>
+            <div id="result">=</div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    var all_num_btn = document.getElementsByClassName('num');
+  	var first_num = '';
+    var second_num = '';
+    var operator = '';
+    var result = '';
+    for (var i = 0; i < all_num_btn.length; i++) {
+        all_num_btn[i].addEventListener('click', function(e) {
+            
+          var user_clicked = e.target.textContent;
+         
+          if (['+', '-', '*', '/'].includes(user_clicked)) {
+				operator = user_clicked;
+                document.getElementById("demo").innerHTML = first_num + operator; 
+          }else if(['='].includes(user_clicked)){
+          	
+          }else if(operator == ""){
+          	first_num += user_clicked;
+             document.getElementById("demo").innerHTML = first_num;
+          }else{
+          	second_num += user_clicked;
+            document.getElementById("demo").innerHTML = first_num + operator + second_num; 
+          }
+          
+          
+          console.log('first_num',first_num)
+          console.log('second_num',second_num)
+          console.log('operator',operator)
+
+          
+        });
+        all_num_btn[i].addEventListener('mouseover', function(e) {
+            e.target.style.cursor = 'Pointer';
+        });
+    }
+    var result = document.getElementById('result');
+    result.addEventListener('click', function(){
+    	
+ 
+             switch(operator){
+             	case '+':
+                result = parseInt(first_num) + parseInt(second_num);
+                break;
+                
+                case '-':
+                result = parseInt(first_num) - parseInt(second_num);
+                break;
+                
+                case '*':
+                result = parseInt(first_num) * parseInt(second_num);
+                break;
+             }
+             
+             
+               if(first_num && !second_num){
+                 if(first_num < 0){
+                  result = first_num;
+                 }
+              }
+             
+             
+            document.getElementById("demo").innerHTML = result;
+             
+            first_num = '';
+            second_num = '';
+            result = '';
+            operator = '';
+    })
+    
+    
+    var clr = document.getElementById('clear');
+     clr.addEventListener('click', function(){
+    	console.log('click')
+ 		 document.getElementById("demo").innerHTML = '';
+         first_num = '';
+         second_num = '';
+         result = '';
+         operator = '';
+    });
+    clr.addEventListener('mouseover', function(e) {
+        e.target.style.cursor = 'Pointer';
+    });
+});
+</script>
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

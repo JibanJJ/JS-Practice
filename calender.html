@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="calendarApp">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendar</title>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: center;
+        padding: 8px;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+</head>
+<body ng-controller="CalendarController">
+
+<h2>Calendar</h2>
+
+<table id="calendar">
+    <thead>
+        <tr>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thu</th>
+            <th>Fri</th>
+            <th>Sat</th>
+            <th>Sun</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="week in weeks">
+        {{weeks}}
+            <td ng-repeat="day in week">{{ day }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script>
+    angular.module('calendarApp', [])
+    .controller('CalendarController', function($scope) {
+        $scope.weeks = [];
+        var all_days = [];
+        var current_date = new Date();
+        var this_month = current_date.getMonth();
+        var first_day = new Date(current_date.getFullYear(), this_month, 1);
+
+        // Adjust the start day if the first day of the month is Sunday
+       /* if (first_day.getDay() === 0) {
+            first_day.setDate(first_day.getDate() - 6);
+        } else {
+            first_day.setDate(first_day.getDate() - first_day.getDay() + 1);
+        }*/
+
+        var current_week = [];
+
+        for (var x = new Date(first_day); x.getMonth() === this_month; x.setDate(x.getDate() + 1)) {
+            current_week.push(x.getDate());
+            
+            if (x.getDay() === 0 || (x.getMonth() !== this_month && current_week.length > 0)) {
+                all_days.push(current_week);
+                current_week = [];
+            }
+        }
+        if (current_week.length > 0) {
+            all_days.push(current_week); 
+        }
+
+        $scope.weeks = all_days;
+    });
+</script>
+
+</body>
+</html>

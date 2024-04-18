@@ -1,0 +1,413 @@
+															------------ JS Related Topics ------------
+
+Browser Engines -
+
+	Browser engines are software components responsible for rendering web pages in web browsers. 
+	They interpret HTML, CSS, and JavaScript code to display web content to users. 
+
+	Chrome, Opera - V8 Engine
+	IE, Edge - Chakra Engine
+	Firefox - Spider Monkey Engine
+	Safari - Nitra Engine
+
+	DOM - Document object model
+	BOM - Browser object model
+	JIT - Just-In-Time (The code is just loaded in the browser and compiled)
+	AOT - Ahead-of-Time (The code is compiled before its reach to the browser)
+	
+Difference between function Expression and Function Declaration
+	
+	It will work if we call the function before declaration.
+	
+	// Function Declaration
+	
+		myFunctionDeclaration(); // This works even before the declaration
+
+		function myFunctionDeclaration() {
+			console.log("This is a function declaration");
+		}
+		
+	// Function Expression
+	
+		// myFunctionExpression(); // This will throw an error - myFunctionExpression is not defined
+
+		var myFunctionExpression = function() {
+			console.log("This is a function expression");
+		};
+
+		myFunctionExpression(); // This works
+		
+
+What is Mutable and Immutable in JavaScript
+
+Immutable:
+
+	Immutable data cannot be changed after it is created. Any operation that appears to modify the data 
+	actually creates a new copy with the desired changes, leaving the original data unchanged.
+	Strings and primitive values (such as numbers and booleans) in JavaScript are immutable.
+	
+	Ex- let str1 = "Hello";
+		let str2 = str1 + ", World!"; // Creates a new string
+		console.log(str1); // Output: "Hello"
+		console.log(str2); // Output: "Hello, World!"
+
+Mutable :
+	
+	Mutable data, on the other hand, can be changed or modified after it is created.
+	Operations performed on mutable data directly modify the original data in memory.
+	Objects, arrays, and functions in JavaScript are mutable.
+
+	Ex- let obj1 = { key: "value" };
+		let obj2 = obj1;
+		obj2.key = "new value"; // Modifies the original object
+		console.log(obj1.key); // Output: "new value"
+		
+Rest Parameter : Rest parameters allow a function to accept an indefinite number of arguments as an array.	
+Spread operator : Spread syntax represented by three dots (...), is used to expand elements of an iterable into individual elements.	
+		
+Function Recurssion : 
+	
+	Function recursion is a technique where a function calls itself directly or indirectly in order to solve a problem.
+	In a recursive function, the function keeps calling itself with modified arguments until it reaches a base case,
+	at which point the function stops calling itself and returns a value.	
+	
+	Ex- To get the factorial value of a number;
+		function factorial(n) {
+			if (n === 0 || n === 1) {
+				return 1;
+			}
+	    // Recursive case: multiply n by the factorial of (n - 1)
+			else {
+			  return n * factorial(n - 1);
+			}
+		}		
+
+		console.log(factorial(5)); // Output: 120 (5 * 4 * 3 * 2 * 1)
+
+Promises :
+
+	A promise in JavaScript is an object representing the eventual completion or failure of an asynchronous operation.
+	It allows you to write asynchronous code in a more organized and readable manner by providing a standardized way
+	to handle the result or error of an asynchronous task.
+	
+	It takes two arguments Resolve / Reject 
+	when successful it call the Resolve() or in case of any error it calls the Reject();
+	
+	Once a promise is created, you can consume its value using the .then() method.
+	This method takes two optional callback functions as arguments: one for handling the resolved value (onFulfilled),
+	and one for handling any errors (onRejected).
+	
+	Ex -
+	let myPromise = new Promise(function(myResolve, myReject) {
+		// "Producing Code" (May take some time)
+
+		  myResolve(); // when successful
+		  myReject();  // when error
+		});
+
+		// "Consuming Code" (Must wait for a fulfilled Promise)
+		myPromise.then(
+		  function(value) { /* code if successful */ },
+		  function(error) { /* code if some error */ }
+		);
+	}	
+Callbaks :
+
+	A callback is a function passed as an argument to another function
+	This technique allows a function to call another function
+	A callback function can run after another function has finished;
+	
+	Ex -
+		function myDisplayer(some) {
+		  document.getElementById("demo").innerHTML = some;
+		}
+
+		function myFirst() {
+		  myDisplayer("Hello");
+		}
+
+		function mySecond() {
+		  myDisplayer("Goodbye");
+		}
+
+		myFirst();
+		mySecond();
+
+IIFE Pattern : 
+
+	An Immediately Invoked Function Expression (IIFE) is a JavaScript design pattern
+	that allows you to create a function expression and immediately invoke it.
+	
+	syntax :
+		(function() {
+		  var message = 'Hello, World!';
+		  console.log(message);
+		})();
+
+Async and Await :
+
+	"async and await make promises easier to write"
+	async makes a function return a Promise
+	await makes a function wait for a Promise
+	
+	Syntax : 
+		
+	async function myDisplay() {
+		let myPromise = new Promise(function(resolve, reject) {
+			resolve("Hello !!");
+		});
+		document.getElementById("demo").innerHTML = await myPromise;
+	}
+	myDisplay();
+	
+	
+	
+	
+	
+	
+	
+	
+	
+															--------------- React Topics --------------
+
+What is react -
+
+	React is a JavaScript library for building user interfaces (UIs) on the web. React is a declarative, 
+	component based library that allows developers to build reusable UI components and It follows the Virtual DOM (Document Object Model) approach, 
+	which optimizes rendering performance by minimizing DOM updates.
+
+Features of react --
+
+	1. Component-Based Architecture
+
+		The component based architecture in react, that allows developers to build complex user interfaces by breaking them into smaller reusable components.
+		Each Component can manage its own state and props and can be easily reused throughout the application.
+			
+	2. JSX 
+		JSX stands for javascript xml, it is syntax extension for javascript it allows us to write HTML elements in their JavaScript code.
+
+	3. Virtual DOM 
+	`
+		Virtual DOM is a light-weight in memory representation of the actual DOM.
+		Instead of manipulating the browser's DOM directly, React creates a virtual DOM in memory, 
+		where it does all the necessary manipulating, before making the changes in the browser DOM.
+
+	4. One-way Data Binding
+	   -- One-way data binding, means it is a one-direction flow. The data in react flows only in one direction i.e. 
+		  the data is transferred from parent components to child components.
+	5. Performance
+	   -- As react creates Virtual Dom and updates only the modified parts.
+		  So, this makes the DOM to run faster
+	6. Components
+	   -- React divides the web page into multiple components as it is component-based.
+		  Each component is a part of the UI design which has its own logic and design,
+		  so it makes easy and run faster and can be reusable.
+	7. Single-Page Applications (SPAs)
+	   -- React is recommended in creating SPAs, allowing smooth content updates without page reloads.
+   
+   
+   Issues / Disadvantages in React -
+
+	- It is not designed  for what we are using, hence lot of GAPs
+	- GAPs means, when companies got any projects from clients, we cant build it 100% with proper technologies like java,python,php e.t.c.
+	  All techmogies are not same, so every technologies having some different GAPs, which is having less GAPS we will go through that and 
+	  that GAPs will fill by different 3rd party plugins.
+	  
+React Components -
+
+	In React Everything is a component, A component is a small, reusable piece of code that represents a part of a user interface.
+
+	Components comes with 2 types
+            1. Function Component (Preffered)
+            2. Class Component
+			
+When to choose functional component or class component:
+	
+	React v 18 supports all the functionality whatever class component is supporting but Extensibility is not supported in functional component.
+	Class Components are Extensible.
+	
+Difference between a Normal function and Functional Component is 
+	
+	In JavaScript a Normal Function can return a function and string, number, boolean e.t.c but A functional component can return a function only.
+	Ex - 
+		function SearchBar(){
+			return( can write anything ) // anonymous function 
+		}
+what is fragment
+
+	It is used to wrap multiple lines also will prevent unnecessarily adding extra nodes to the DOM.
+	fragment looks like empty HTML tag <></>
+	
+	A React Fragment is a component that allows you to group multiple children elements without adding extra nodes to the DOM.
+	It's particularly useful when you need to return multiple elements from a component's render method, 
+	but you don't want to add unnecessary wrapper elements to the DOM.
+	
+	Instead of using <React.Fragment> component we can use empty HTML tag <></>.
+	
+State :
+
+	In React, state is an object that holds some data that can change and it is managed internally within a component using the useState hook.
+	state can be updated by using setState() method. When state changes, React re-renders the component, updating the UI to reflect the new state.
+
+Hooks : 
+
+	It is a special function in react that allows you to use react features such as state or lifecycle methods in functional components.
+	Hooks were introduced in React 16.8 versions as a way to write reusable logic across components without the need of class components or
+	Heigher Order Components.
+	
+	By using Hooks it making code cleaner and more modular.
+	
+	React provides more built in Hooks like
+	-- useState Hook
+	-- useEffect hook
+	-- useRef Hook
+	-- useContext Hook e.t.call
+	
+	Each serving a specific purpose.
+
+
+useState() Hook :
+
+	It is a built-in React hook that allows functional components to manage state.
+	It accepts one argument, which is the initial state value, and returns an array with two elements
+	the current state value and a function to update that state value;
+	
+	Ex - const [state, setState] = useState(initialState);
+	
+	`state`: It is the current state value.
+	`setState`: it is used to update the state.
+
+why we use const for configuring state
+
+	State must be initialized, state once intialized cant be assigned with new memory,
+	You can re initialize the state to store new values.
+	
+	Here it is Re-initialize the values not re-assign.
+	
+	Ex -
+		const [count, setCount] = useState(0); declares a state variable count initialized with the value 0.
+		The use of const means that count cannot be reassigned to a different reference.
+
+		When the button is clicked, the increment function is called. Within increment, setCount(count + 1); is used to update the state.
+		Despite count being declared with const, its value can still change over time because setCount is responsible for updating the state, not direct assignment.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Lifecycle of Components --
+Each component in React has a lifecycle which you can monitor and manipulate during its three main phases.
+The three phases are: 
+                      Mounting, 
+                      Updating, 
+                      and Unmounting.
+                      
+Mounting -- 
+Mounting means putting elements into the DOM.
+React has FOUR built-in methods that gets called, in this order, when mounting a component:
+    1.constructor()
+    2.static getDerivedStateProps()
+    3.render()
+    -- The render() method is required, and is the method that actually outputs the HTML to the DOM.
+    4.componentDidMount()
+    -- this method is called after the component is rendered.
+    -- To run the statements it requires that the component is already placed in the DOM.
+    
+Updating --
+A component is updated whenever there is a change in the component's state or props.
+React has four built-in methods that gets called, in this order, when a component is updated:
+    
+    1.shouldComponentUpdate()
+    -- In the shouldComponentUpdate() method you can return a Boolean value that specifies 
+       whether React should continue with the rendering or not.
+    -- The default value is true.
+    2.render()
+    -- The render() method is of course called when a component gets updated,
+       it has to re-render the HTML to the DOM, with the new changes.
+    3.getSnapshotBeforeUpdate()
+    -- In the getSnapshotBeforeUpdate() method you have access to the props and state before the update, 
+       meaning that even after the update, you can check what the values were before the update.
+    4.componentDidUpdate()
+    -- The componentDidUpdate method is called after the component is updated in the DOM.
+    -- If the getSnapshotBeforeUpdate() method is present, you should also include the componentDidUpdate() method, otherwise you will get an error.
+       And in this method you will get new values after the update.
+    5.getDerivedStateFromProps()
+       
+Unmounting --
+The next phase in the lifecycle is when a component is removed from the DOM, or unmounting as React likes to call it.
+React has only one built-in method that gets called when a component is unmounted:
+    1.componentWillUnmount()
+    -- The componentWillUnmount method is called when the component is about to be removed from the DOM.
+    
+Props - 
+    -- Props is a special keyword in React that stands for properties and is used for passing data from one component to another
+    
+React Events -
+    -- React events are written in camelCase syntax:
+       onClick instead of onclick
+       
+    -- React event handlers are written inside curly braces:
+       onClick={shoot}  instead of onclick="shoot()"
+       
+React Router -
+    -- To add React Router in your application, use npm i -D react-router-dom in the terminal
+    -- Anytime we link to an internal path, we will use <Link> instead of <a href="">.
+    
+React CSS -
+    -- In JSX, JavaScript expressions are written inside curly braces, and since JavaScript objects also use curly braces, 
+       the styling in the example above is written inside two sets of curly braces {{}}.
+    -- Since the inline CSS is written in a JavaScript object, properties with hyphen separators, 
+       like background-color, must be written with camel case syntax:
+       
+       Ex- Use backgroundColor instead of background-color
+       
+React Hooks -
+    -- There are 3 rules for hooks:
+        1.Hooks can only be called inside React function components.
+        2.Hooks can only be called at the top level of a component.
+        3.Hooks cannot be conditional
+useState Hook - 
+    -- The React useState Hook allows us to track state in a function component.
+    -- State generally refers to data or properties that need to be tracking in an application.
+React-dom :
+    -- React JS ReactDOM or react-dom is the most widely used package of React. 
+       React provides the developers with a package react-dom to access and modify the DOM.
+MVC - Model-View-Controller
+How do browsers read JSX:
+    -- In general, browsers are not capable of reading JSX and only can read pure JavaScript. The web browsers read JSX with the help of a transpiler. 
+       Transpilers are used to convert JSX into JavaScript. The transpiler used is called Babel
+context API - 
+    -- Context API is used to pass global variables anywhere in the code.
+       It helps when there is a need for sharing state between a lot of nested components.
+
+
+function declaration
+function expression
+parameters
+rest parameters and spread syntax
+function return
+function recurssion
+function generator
+promises
+callback
+anonymous functions
+IIFE pattern for function
+Async function
+function closure
+
+state
+hook
+useState Hook
+useEffect Hook
+

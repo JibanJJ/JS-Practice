@@ -1,0 +1,562 @@
+
+
+// for field value like $10.00
+
+	type="currency" currency-mask="" && currency-init="row.gross_monthly_income" (in table)
+	
+multiple ="true" >> Showing multiple value dropdowns
+
+// To show all the previous and upcoming dates
+	all-dates="true"
+
+// To show only the past dates
+	all-dates="true" max-date="0"
+
+// glbal-list syntax and on change fun 
+	<global-list required="true" model-name="add_attr.type" dependency="" list-id="customlist_cr_master_field_types" change-fun ="enable_source(add_attr)"></global-list>
+	
+// To hide the filter from Crng Table
+	global-search="F" >> on crng table
+	filter="off" features="off" >> on table collection 
+
+// To select multiple check box in table serial numbers
+	select-all="checkbox,row.id"  >> On table collection 
+
+// To select single check box in table
+	select-mode='single' && select-all="checkbox,row.id" >> On table collection
+	&& $scope.checkbox=[]; -- JS  
+
+$scope.checkbox Pass this to Post function and pass on that search >> To get the particular data which one u select
+
+// To skip the dropdown empty values (First) 
+	place-holder="false" >> global-list
+
+// for search (Yellow mark)
+	model="sample" default="default_prop" >> on search button list mode
+	$scope.default_prop = angular.copy($scope.sample) >> in JS
+
+// while nav from view to list the same dropdown val should not be change
+	if(isset(get_local_filters())){
+		$scope.sample = get_local_filters();
+	}
+
+hrefp="" (for nav other page)
+
+//  To show the Edit button only for selected tabs on list mode
+	EDIT Button: <a class="btn btn-outline-primary pull-left btn-cons" ng-if="screen_mode == 'view' && (active_tab == 'primary_info' || active_tab == 'inspection_details')"  href="#/application-das/edit/{{RECID}}/{{active_tab}}" role-element="">Edit</a>
+
+
+// for fix(vertical) the buttons/headers
+
+	<div class="container-fluid" style="" id="">
+		<div class="sticky-tl rw rungroup"></div>  
+	</div>
+
+// for fix (horizontal) the buttons/headers
+	<div class="rw tab-buttons tab-w">
+		<div class="sticky-left" auto-arrange-buttons="">
+			<button class="btn btn-outline-primary pull-left" ng-click="" role-element="">Add </button>
+		</div>
+	</div>
+
+// while select something in any mode and move to other mode & again get back to same mode selected things should show
+	no-refresh="change_tab('primary_info')" -- Html on tabs
+	$scope.change_tab = function(tab){
+		if(!tab){
+			 $scope.active_tab = 'primary_details'
+		}else{
+			$scope.active_tab = angular.copy(tab)
+		}
+	} -- In Js
+
+// syntax for cr expandable
+	<div cr-expandable="2.0" class="always active" role-element="">
+		 <div expand-handler=""> Primary Information </div>
+		 <div expand-body=""></div>
+	</div>
+	
+// For the url like #/tenant_change_request/create/341
+
+	}).when("/tenant_change_request/create", {} >> In this controller just for normal create
+
+	}).when("/tenant_change_request/create/:ID", {} 
+	
+	// Here we are passing ID from javascript and also filtering in post function 
+	
+		if(isset($routeParams.ID) && $routeParams.ID == '341'){
+			$routeParams.ID = '341';
+			$rootScope.RECID = $routeParams.ID;
+		}
+
+// For Required fields
+	required-fields="view" -- use this on save button & keep the value (object of ng-models) &&
+	required="true" -- Keep this on input/dropdown fields
+	
+// Silent = T >> It will load the dropdowns after page loaded, so the page will taking less time to load.
+// Freez = T >> Using this on table headings, while scrolling the page horizontally the columns will not move and get fixed.
+
+// $scope.new = angular.copy($scope.array/object) >> Creates a deep copy of a source
+
+// disabled field and u can navigate from that link to other page
+
+ <div class="" role-element="account_number">
+	<div class="control-group" ng-class="{'link-element':(view.account_number != '' && screen_mode == 'view')}">
+		<label class="control-label" for="F0Oqp">A/c No: * Account Number</label>
+		<div class="controls">
+			<input ng-model="view.account_number" readonly="true" disabled="true" nopattern="" field="" type="text" class="form-control" id="abcai" name="abcai" placeholder="" value="" />
+			<a hrefp="#/application/list" ng-if="view.account_number != '' && screen_mode == 'view'">{{view.account_number}}</a>
+		</div>
+	</div>
+</div>
+
+// redirect to backend record
+
+<a standard-suitelet="customerrefund,{{row.refundid}}">
+
+// for dates sct.new_date()
+
+// script deployment for sun development
+CR PMS GEMINI POST API else search - 263 ( Internal ID )
+
+// first select value dropdown on Cr-ng-select
+
+$scope.assignedproperties = response.data;
+console.crlog('assignedproperties',$scope.assignedproperties)
+ 			
+if(isset($scope.assignedproperties)){
+ 	$scope.create.property = [$scope.assignedproperties[0].id];
+}
+
+// global-list auto select dropdown val
+$scope.create.servicereqtype = SCID.service_request_type.VAL_SR_TYPE_RESIDENT;
+
+// for keeping the page Heading with record ID
+$rootScope.PAGESUBTITLE = angular.copy($scope.view.id);
+
+// to get the user name in Post Function
+var user = RUNTIME.getCurrentUser();
+
+APP.COMMONN_CONTROLLER = function($scope, $rootScope,$routeParams, $location, $modal, $ajax, classproperty, _globallist) {
+	// it's a common controller developer need to call this controller inside of (list/create/view) to get the data of common controller
+)}
+
+// to get the user (EX- adminstrator, property manager or asset manager) also u can get all details from (LOGGED_USER)
+
+var roleid = angular.copy(LOGGED_USER.roleId);
+
+// to get the access of SCIDs >> sct.get_screen_lists("check this"); in api post function
+
+// same as log.debug >> throw "body > "+(JSON.stringify(body));
+
+// ng-disabled="create.current_status != SCID.home_status.VAL_HOMESTATUS_RENTED" >> for disabled a field based on that value
+
+// to get a input field with editable option and popup
+
+editable="number" type="inline" trow="row" editable-options="" editable-source="monthly_budget" editable-callback ="edit_field(data,callback)" (Keep this in input field)
+
+crng table filters >> In crng table we are keeping column in table <th> and value in <td> we need to keep same both for filtering the data
+	
+	
+//  search.createColumn({ name: "internalid", sort: search.Sort.DESC, label: "Internal ID" }) >> use Sort.DESC for the table in decending order
+	
+//	sct.sharing = esign_transaction
+
+// to remove the empty values from dropdown list >> $scope.sortedArray = $scope.assigned_properties.filter(obj => obj.title.trim() !== '');
+// Sort the array in accending order >> $scope.sortedArray.sort((a, b) => a.title.localeCompare(b.title)); 
+
+// loop function
+ loop_function:function(rw){
+			   if(isset(rw)){
+				   if(isset(rw.service_type)){
+					   if(rw.service_type == SCID.service_request_type.VAL_SR_TYPE_WARRANTY){
+						   arr_.push(rw);
+					   	}
+				   }
+				   if(!isset(rw.manufacturer)){
+					   rw.manufacturerTextText = rw.manufacturerfree
+				   }
+			   }
+		   }
+		   
+// to get property_code from property
+
+var Propertycode = "";
+if(isset(data_obj.property)){
+	Propertycode = "";
+		var propRecObj = search.lookupFields({type:'customrecord_cr_sun_community', id: data_obj.property, columns: ['custrecord_cr_sun_com_class']});
+		
+		if(isset(propRecObj.custrecord_cr_sun_com_class)){
+			create_data.setValue("custevent_cr_sun_property_code",propRecObj.custrecord_cr_sun_com_class[0].value);
+		}
+}
+
+
+// Highlight the indicator into pink 
+
+<button class="btn btn-outline-primary pull-right btn-cons summary-btn indicator" >Closing Audit Status : {{filter.clsngauditstatusText}}</button>
+
+// set the input field background color 
+
+ <a ng-class="{'bg-green': view_field.request_response == 'Pass','bg-red': view_field.request_response == 'Fail'}" integration-log="CheckOut" system="SCID.g_int_system_list.VAL_SL_NUBS" record-id="view_field.id" ng-if="screen_mode == 'view' && isset(view_field.request_response)">{{view_field.request_response}}</a>
+
+// SB 05 Patch Update
+
+open Internal account
+Documents >> files >> suitescripts >> search the file name >> download
+
+open SB 05 account
+Documents >> files >> suitescripts >> search the file name >> Edit >> choose file (downloaded) >> save (edited)
+
+
+// Calculate year month and days
+
+	if($scope.today.getMonth() > $scope.old_date.getMonth()){
+		  $scope.month = ($scope.today.getMonth() - $scope.old_date.getMonth()) 
+	}
+	else {
+		$scope.month = (12 - ($scope.old_date.getMonth() - $scope.today.getMonth())) 
+		$scope.year--;
+	}
+		
+	if($scope.month == 12){
+	  $scope.year++;
+	  $scope.month = 0; 
+	} 
+
+// confirmation alert before delete 
+
+	$scope.remove_field_admins = function(index){
+		$modal.confirm('sure..... you want to delete ?', function(re){
+			if(re){
+				$scope.admin_fields_data.splice(index, 1);
+			}
+		});	
+	}
+	
+	// Required filed with title (if its in a table)
+	
+	<input required="true" label="Title" ng-model="fields_tb.title" nmode="" nopattern="" field="" type="text" class="form-control" id="S18VF" name="S18VF">
+
+	// to  get access of SCIDS 
+	
+	sct.get_screen_lists_scipts("delinquent_resident");
+	_data.status = "success"; -- keep on post function (js)
+
+
+// create and update child records (Refer Admin Attributes screen)-- on update
+
+			for(var i=0;i<all_admin_data.length;i++){
+				var row = all_admin_data[i];
+				if(isset(row['id'])){//from edit
+					
+					var indxx = update_add_fields_record.findSublistLineWithValue({sublistId:"recmachcustrecord_cr_rk_field_parent" , fieldId: 'id', value: row['id']});
+					
+					update_add_fields_record.selectLine({sublistId: "recmachcustrecord_cr_rk_field_parent", line: indxx});
+					update_add_fields_record.setCurrentSublistValue({sublistId: "recmachcustrecord_cr_rk_field_parent", fieldId:"name", value:row.title, ignoreFieldChange: false});
+				}else{//from create
+					update_add_fields_record.selectNewLine({sublistId:"recmachcustrecord_cr_rk_field_parent"});
+					update_add_fields_record.setCurrentSublistValue({sublistId: "recmachcustrecord_cr_rk_field_parent", fieldId:"name", value:row.title, ignoreFieldChange: false});
+				}
+				
+				update_add_fields_record.commitLine({sublistId:"recmachcustrecord_cr_rk_field_parent"});
+			}
+
+// create child records -- (On create)
+
+	for(var i=0; i< all_admin_data.length; i++){
+			
+			new_record.selectNewLine({sublistId: 'recmachcustrecord_cr_rk_field_parent'});
+			new_record.setCurrentSublistValue({sublistId: 'recmachcustrecord_cr_rk_field_parent', fieldId: 'name', value : all_admin_data[i].title});
+			new_record.commitLine({sublistId: 'recmachcustrecord_cr_rk_field_parent'});
+		}
+		
+// while updating for checking the duplicate names (Refer Admin Attributes screen)
+
+	filters:
+		   [
+		      ["isinactive","is","F"],
+		      "AND",
+		      ["name","is",body.update_obj.name], (for which filter we want restriction)
+		      "AND",
+		      ["internalid","noneof",body.selected_id],(main ID on which we will update)
+		   ],
+	if(isset(pages_data)){
+		return 'pg_existed_data';
+	}else{
+		update all the data
+	}
+
+// displaying all the data except some selected record
+
+	if(isset(body.added_admins)){
+		fill.push("AND"),
+		fill.push(["internalid","noneof",body.added_admins])
+	}
+
+-- Passing all the internal ids which all are saved
+
+// if u want to call multiple ajax connections while a single function triggering then 
+-- make a function	
+-- keep the connections inside of that function
+-- call when its require
+-- also always close the popup after both connection called
+
+EX - $ajax.post("g/adatt/1009", {'selected_ID':$scope.remove_box}, function(response){
+			$scope.res = response.data;
+			$scope.ajax_calling();                            -- its having separate connection in that function
+			$modal.close('remove_fields_id');
+		}, function(response){
+		});
+
+// for side popup
+
+"side":true --- use this on end of modal.open();
+"footer":"F", -- use this if u dont want the footer part "Cancel button"
+
+// if there is 2 <script> in a single popup file then keep like this for better UI
+
+<script type="text/ng-template" id="admin_page_popup.html">
+
+ <div class="col-md-12">
+	 <div class="rw">
+	   <crng-table target="data_table_list_pg" global-search="F"></crng-table>
+	 </div>
+  </div>
+  
+</script>
+<script type="text" id="data_table_list_pg"></script>
+
+// to get the current user and ID in JS
+
+	$scope.sample.created_by = LOGGED_USER.id
+	$scope.sample.created_byText= LOGGED_USER.name
+	
+	In Post function
+	
+	-- var user = RUNTIME.getCurrentUser();
+
+// while coping some data to another array, if angular.copy() && push is not working then (try below code)
+
+	$scope.copied_array = [];
+	$scope.check_table_data = function(){
+		if(isset($scope.admin_fields_data)){
+			for(var k=0;k<($scope.admin_fields_data).length;k++){
+				var row = $scope.admin_fields_data[k];
+				if(isset(row.id)){
+					($scope.copied_array).push(row);
+				}
+			}
+		}
+		$scope.admin_fields_data = [];
+	}
+
+// get all the years from current year to next 10 year and before 10 year;
+
+	var dt = sct.new_date();
+	$scope.years_list = [];
+	for (var x = (dt.getFullYear() + 10); x > (dt.getFullYear() - 10); x--) {
+		var v = angular.copy(x);
+		$scope.years_list.push({ "id": v, "name": v });
+	}
+
+// all the dates of current month;
+
+	var curr = new Date();
+	var this_month = curr.getMonth(); 
+	var first_day = new Date(curr.getFullYear(), this_month, 1).getDate();
+	var last_day = new Date(curr.getFullYear(), this_month + 1, 0).getDate();
+	console.log('f',last_day)
+	for (var x = first_day; x <= last_day; x++) {
+		console.log(x);
+	}
+
+
+
+
+
+
+
+// to get the property dropdown (globally created)
+
+	_globallist.get('property', '', function(list){
+		$scope.assigned_properties = [];
+		if(isset(list)){
+			for(var i=0; i<list.length;i++){
+				if(isset(list[i].property_code) && isset(list[i].region) && isset(list[i].division)){
+					if(isset(list[i].ptype)){
+						if((list[i].ptype == SCID.mh_rv_hybrid_list.VAL_PROPERTY_TYPE_MH)||isset(list[i].hybrid)){
+							var obj = {}
+							obj.id= list[i].property
+							obj.title = list[i].propertyText
+							$scope.assigned_properties.push(obj);
+						}
+					}
+				}
+			}
+			if(isset($scope.assigned_properties)){
+				console.crlog('assigned_properties',$scope.assigned_properties)
+				$scope.create.property = $scope.assigned_properties[0].id;
+				if(isset($scope.create.property)){
+ 					$scope.property_change($scope.create.property);
+ 				}
+			}
+		}
+	}, '', '', {"drpv2":"T"});
+	
+	
+
+
+// access record codes
+	
+	var acc_obj = {}; >> js
+		acc_obj.mode = 'create';
+		$ajax.set_default("role", {"type": "", "function": "get_tcr_acess_record", "ref": "l/tcr", 'data':  acc_obj});
+		roleService.run("screenid", 'create', function(data){
+			$rootScope.role = data;
+		}, {"hide": "hide"});
+		
+	function get_tcr_acess_record(body,_default){ >> post function
+		//log.debug('debug', 'datadatadata '+JSON.stringify(_default));
+		var Fils = [];	
+		var mode = "3";
+		var modes = {"create":"1", "edit":"2", "view":"3", "list":"4", "mode1":"5"};
+		if(isset(_default['role']['data']["mode"]) && modes[_default['role']['data']["mode"]]){
+			mode = modes[_default['role']['data']["mode"]];
+		}
+		
+		Fils.push(["custrecord_cr_sun_mvaccess_scrn_acc_mode","anyof", mode]);//mode
+		/*if(isset(_default['role']['data']['status'])){
+			Fils.push("AND");
+			Fils.push(['custrecord_cr_sun_site_list_approvalstat',"anyof", _default['role']['data']['status']]);
+		}
+		else{
+			Fils.push("AND");
+			Fils.push(['custrecord_cr_sun_site_list_approvalstat',"anyof", '@NONE@']);
+		}*/
+		//log.debug('debug', '_default[role][data][status] '+JSON.stringify(_default['role']['data']['status']));
+		if(isset(_default['role']['data']['status'])){
+			Fils.push("AND");
+			Fils.push(['custrecord_cr_sun_mvaccess_tcr_status',"anyof", _default['role']['data']['status']]);
+		}
+		if(isset(_default['role']['data']['type'])){
+			Fils.push("OR");
+			Fils.push(['custrecord_cr_sun_mvaccess_tcr_type',"anyof", _default['role']['data']['type']]);
+		}
+		var user = RUNTIME.getCurrentUser();
+		//log.debug('user.role', 'user.role'+JSON.stringify(user.role));
+		Fils.push("AND");
+		Fils.push(["custrecord_cr_sun_mvaccess_role", "anyof", user.role]);//"1008"
+		
+		var data = sct.search({
+			   type: "customrecord_cr_sun_move_out_access_reco",
+			   filters: Fils,
+			   columns:
+			   [
+			    	search.createColumn({name: "custrecord_cr_sun_mvaccess_scrn_acc_type", label: "Screen Access Type"}),
+			    	search.createColumn({name: "custrecord_cr_sun_mvaccess_access_wfid", label: "WF Table/Tab/Button/Field ID"})
+			   ],
+			   mainkey:"key",
+			   custom: {
+				   "0":"access",
+				   "1":"key"
+			   }
+			});
+		
+		//log.debug('debug', '_default[role][data][type] data'+JSON.stringify(data));
+		return data;
+}
+
+
+
+
+
+
+
+// Doc engine codes
+
+var state_id ="";
+		if(isset(prpertycode)){
+			var propRecObj = search.lookupFields({type:'classification', id:prpertycode, columns: ['custrecord_sun_class_subsidiary_state']});
+			
+			if(isset(propRecObj)&& isset(propRecObj['custrecord_sun_class_subsidiary_state'])){
+				state_id = propRecObj['custrecord_sun_class_subsidiary_state'][0].value;
+			}
+		}
+		
+		var filters = [];
+    	filters.push(["isinactive","is","F"]);
+    	filters.push("AND")
+    	filters.push(["custrecord_cr_sun_dts_req_for_ecrion", "anyof", SCID.yes_or_no.VAL_YES])
+    	filters.push("AND")
+    	filters.push(["custrecord_cr_sun_dts_type", "anyof", SCID.g_aptyp_types.VAL_SERVICE_REQUEST])
+		filters.push("AND");
+		filters.push([[["custrecord_cr_sun_dts_app_states","anyof",SCID.g_applicable_for_states.VAL_APFS_ALL_STATES]],"OR",[["custrecord_cr_sun_dtsas_doctype_parent.custrecord_cr_sun_dtsas_state","anyof",state_id]]])
+    	log.debug("_filters::::::::::::11",filters);
+    	
+    	var docs_search_recs1 = sct.search({
+    		type: "customrecord_cr_sun_appdoctypstp",
+    		filters: filters,
+    		columns: [
+    		          search.createColumn({name: "name", sort: search.Sort.ASC, label: "Name"}),
+    		          search.createColumn({name: "custrecord_cr_sun_dts_type", label: "Type"}),
+    		          search.createColumn({name: "custrecord_cr_sun_dts_req_for_ecrion", label: "Generated via DocEngine"}),
+    			      search.createColumn({name: "custrecord_cr_sun_dts_requiredornot", label: "Pre-defined Required"}),
+    			      search.createColumn({name: "custrecord_cr_sun_dts_sign_req", label: "Sign Required"}),
+    			      search.createColumn({name: "custrecord_cr_sun_dts_typecode", label: "DocEngine Document Type Code"}),
+    			      search.createColumn({name: "custrecord_cr_sun_dts_docenginetypes", label: "DocEngine Types"}),
+    			      search.createColumn({name: "custrecord_cr_sun_dts_signing_process", label: "Signing Process"}),
+    			      search.createColumn({name: "custrecord_cr_sun_dts_author_agent", label: "Authorized Agent"}),
+    			      search.createColumn({name: "custrecord_cr_sun_dts_esign_expr_days", label: "E-Sign Expiry Days"}),
+    			      search.createColumn({name: "custrecord_cr_sun_dts_expry_wrndays", label: "Expiry Warn Days"}),
+    			      search.createColumn({name: "custrecord_cr_sun_dts_rmndr_delydays", label: "Reminder Delay Days"}),
+    			      search.createColumn({name: "custrecord_cr_sun_dts_rmndr_frncydays", label: "Reminder Frequency Days"}),
+    			      search.createColumn({name: "custrecord_cr_sun_dts_docsgn_name", label: "Docusign Document Name"}),
+    			      search.createColumn({name: "custrecord_cr_sun_dts_signing_process", label: "Signing Process"})
+    			     ],
+    		custom:{
+    			"0":"name",
+    			"1":"doc_type",
+    			"2":"generated_via_docengine",
+    			"3":"predefined_required",
+    			"4":"sign_required",
+    			"5":"doc_type_code",
+    			"6":"doc_engine_type",
+    			"7":"signing_process",
+    			"8":"authorize_agent",
+    			"9":"e_sign_expiry_days",
+    			"10":"expiry_warn_days",
+    			"11":"reminder_delay_days",
+    			"12":"reminder_frequency_days",
+    			"13":"doc_sign_document_name",
+    			"14":"signing_process"
+    		},
+//    		loop_function:function(row){
+//    			row.esigntype = "rent_inc_type";	//
+//    		}
+    		return_array:true
+    	});
+    	log.debug("docs_search_recs1 ::::::::::",docs_search_recs1)
+    	if(isset(docs_search_recs1)){
+    		for(var k=0;k<docs_search_recs1.length;k++){
+    			var doc = docs_search_recs1[k]
+            	var doc_record = RECORD.create({type:'customrecord_cr_sun_e_sign_transaction', isDynamic: true});
+        		doc_record.setValue("custrecord_cr_sun_e_sign_tran_dcmt_type", doc.id);
+        		doc_record.setValue("custrecord_cr_sun_e_sign_tran_gen_v_doc", doc.generated_via_docengine);
+        		doc_record.setValue("custrecord_cr_sun_e_sign_tran_dedt_code", doc.doc_type_code);
+        		
+        		doc_record.setValue("custrecord_cr_sun_e_sign_tran_required", doc.predefined_required);
+        		doc_record.setValue("custrecord_cr_sun_e_sign_doceng_list", doc.doc_engine_type);
+        		
+        		doc_record.setValue("custrecord_cr_sun_e_sign_tran_sihm_rqd", doc.sign_required);
+        		doc_record.setValue("custrecord_cr_sun_e_sign_tran_doc_review", SCID.docengine_review_status.VAL_PENDING);//default pending
+        		doc_record.setValue("custrecord_cr_sun_e_sign_submt_fr_mai", SCID.g_submit_for_mailing.VAL_NO);//custom list
+        		
+        		doc_record.setValue("custrecord_cr_sun_e_sign_tran_type", doc.doc_type);
+        		doc_record.setValue("custrecord_cr_sun_e_sign_tran_sihm_rqd", SCID.yes_or_no.VAL_NO);
+        		doc_record.setValue("custrecord_cr_sun_e_sign_docsignprsinter", doc.signing_process);
+        		doc_record.setValue("custrecord_cr_sun_service_request", body["id"]);
+        		log.debug("doc.esigntype", doc.esigntype);
+        		var doc_engine_rec = doc_record.save();
+    		}
+    		
+    	}

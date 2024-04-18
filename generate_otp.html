@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Variables</h2>
+
+<p id="demo"></p>
+<button id='btn'>Generate Otp</button>
+<script>
+
+  var submit = document.getElementById('btn')
+
+  submit.addEventListener('click', function(){	
+      var otp = '';
+      var num = '1234567890'
+      var char_ = 'abcdefghijklmnopqrstuvwxyz'
+      for(var i=0; i< 5; i++){
+          var numer = Math.floor(Math.random() * num.length);
+          var str = Math.floor(Math.random() * char_.length);
+
+           if (i % 2 === 0) {
+              otp += char_.charAt(str)
+           }else{
+              otp += num.charAt(numer)
+           }
+      }
+      console.log(otp)
+
+  })
+
+</script>
+
+</body>
+</html>

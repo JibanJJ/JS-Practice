@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>date time and seconds</title>
+</head>
+<body>
+	<h1 id="show">reset</h1>
+<script>
+	function increment_second(){
+		var today_date = new Date();
+	
+		var h = today_date.getHours();
+		var m = today_date.getMinutes();
+		var s = today_date.getSeconds(); 
+		
+		if(h < 12){
+			var cc = 'AM'
+			
+		}else{
+			h = h - 12;
+			cc = 'PM'
+		}
+		
+		if(h < 10){
+			h = '0' + h;
+		}
+		if(m < 10){
+			m = '0' + m;
+		}
+		if(s < 10){
+			s = '0' + s;
+		}
+		var tt = h + ':' + m + ':' + s + ' ' + cc;
+		
+		document.getElementById('show').innerHTML = tt;
+	}
+	
+	setInterval(function(){
+		increment_second();
+	},1000)
+
+	
+	
+</script>
+</body>
+</html>

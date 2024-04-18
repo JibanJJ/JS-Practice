@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript const</h2>
+<p id="demo"></p>
+<style>
+  .list-item-container {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  
+  }
+  .list-item-container:not(:first-child) {
+    margin-top: 6px;
+  }
+  
+  .list-item-container button {
+    margin-left: 110px;
+  }
+</style>
+<script>
+// creating TODO list
+  var input_ = document.createElement('input')
+  var add_btn = document.createElement('button')
+  input_.type = 'text'
+  
+  add_btn.textContent = 'ADD'
+  
+  add_btn.addEventListener('click',function(){
+  
+    var list_item_container =  document.createElement('div');
+    list_item_container.classList.add('list-item-container')
+    
+  	var t_data = document.createElement('li');
+    var rmv_btn = document.createElement('button');
+    rmv_btn.textContent = 'remove'
+    
+    var val = input_.value;
+    
+    
+    console.log(val)
+     
+     if(val){
+     	t_data.textContent = val;
+        input_.value = '';
+        list_item_container.appendChild(t_data);
+        list_item_container.appendChild(rmv_btn);
+     }else{
+     	alert('Please add some text')
+     }
+     
+      
+     document.body.appendChild(list_item_container);
+     
+      rmv_btn.addEventListener('click', function(){
+  		list_item_container.remove()
+  	  })
+  })
+  
+ document.body.appendChild(input_);
+ document.body.appendChild(add_btn);
+</script>
+</body>
+</html>

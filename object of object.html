@@ -1,0 +1,127 @@
+<html>
+<head>
+<title>array of object</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+	<pre>{{empty || json}}</pre>
+</div>
+<script>
+	var app = angular.module('myApp', []);
+	app.controller('myCtrl', function($scope){
+	
+$scope.applicant_obj={
+	  "171": {
+	    "general": {
+	      "id": "171",
+	      "salutation": "1",
+	      "salutationText": "Mr.",
+	      "initials": "pr",
+	      "firstname": "micheal",
+	      "lastname": "morrone",
+	      "email": "micheal@gmail.com",
+	      "primaryphone": "(502) 543-2156",
+	      "secondaryphone": "(654) 987-6546",
+	      "ssn": "453-25-23",
+	      "gender": "1",
+	      "genderText": "Male",
+	      "dateofbirth": "1995-06-07T07:00:00.000Z",
+	      "dateofbirthTime": 802508400000,
+	      "dateofbirthValue": "1995-06-07T07:00:00.000Z",
+	      "dateofbirthText": "06/07/1995",
+	      "dateofbirthtimeText": "06/07/1995",
+	      "martialstatus": "",
+		  
+	      "primarylanguage": "",
+	      "sunemployee": "198",
+	      "sunemployeeText": "Ananya Amist CR",
+	      "address": "micheal morrone\nlouisville  765891\nVirgin Islands (USA)",
+	      "country": "VI",
+	      "countryText": "Virgin Islands (USA)",
+	      "residenttype": "",
+	      "sunemployeestatus": "",
+	      "address1": "",
+	      "address2": "",
+	      "state": "",
+	      "zip": "765891",
+	      "zipNumber": 765891,
+	      "city": "louisville",
+	      "age": 27,
+	      "ageText": "27.4767123287671232876712328767123287671",
+	      "middlename": "tghg",
+	      "team_member_id": "198",
+	      "team_member_idText": "Ananya Amist CR",
+	      "drivers_licence": "85667567575",
+	      "alt_email": "morrone@gmail.com",
+	      "contact_type": "6",
+	      "contact_typeText": "Walk In",
+	      "source_type": "8",
+	      "source_typeText": "Print Ad",
+	      "source_details": "yugpo465465",
+	      "suffix": "lkjh",
+	      "occupant_typeText": "Adult",
+	      "occupant_type": "2"
+	    },
+	},
+	
+	"170":{
+	    "otherapplicant": {
+	      "id": "1409",
+	      "applicanttype": "1",
+	      "applicanttypeText": "Primary Applicant",
+	      "relationtoprimaryapplicantText": "Self",
+	      "includeforcreditanalysis": "1",
+	      "includeforcreditanalysisText": "Yes",
+	      "isbuyer": '',
+	      "no_of_dependents": "",
+	      "ages": "",
+		 
+	      "app_details_id": "1409",
+	      "app_details_idText": "1409",
+	      "home_owner_type": ""
+	    },
+	},
+	"110":{
+	
+	    "bankdetails": {
+	      "id": "1",
+	      "bankname": "AMX",
+	      "accounttype": [
+	        "1"
+	      ],
+	      "accounttypeText": "Checking",
+	      "alimonychildsupport": "5.00",
+	      "alimonychildsupportDecimal": 5,
+	      "currentlydelinquent": "2",
+	      "currentlydelinquentText": "No",
+	      "internalid": "",
+	      "internalidText": "1"
+	    },
+	    },
+	  },
+
+	$scope.empty = {};
+		for (var key in $scope.applicant_obj) {
+			var applicant = $scope.applicant_obj[key];
+		
+			for (var x in applicant) {
+				for (var y in applicant[x]) {
+					if(!$scope.empty[key]){
+						$scope.empty[key] = {};
+						if(!$scope.empty[key][x]){
+							$scope.empty[key][x] = [];
+						}
+					}
+					if (applicant[x][y] == '') {		
+						$scope.empty[key][x].push(y);
+					}
+				}
+				
+			}
+		}
+
+});
+</script>
+</body>
+</html>

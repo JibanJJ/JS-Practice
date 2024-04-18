@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+       .main_container{
+			
+		display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+		align-items: center;
+		width: 300px;
+		
+	   }
+	   
+	   .box{
+			height: 80px;
+			width: 80px;
+			padding: 10px;
+			margin: 5px;
+			box-sizing: border-box;
+			background-color: grey;
+			border: 1px solid #ccc;
+			text-align: center;
+			font-size: 50px;
+			color: white;
+	   }
+    </style>
+    
+</head>
+
+<body ng-controller="myCtrl">
+    <div class="main_container">
+			<div class="box" ></div>
+			<div class="box" ></div>
+			<div class="box" ></div>
+			<div class="box" ></div>
+			<div class="box" ></div>
+			<div class="box" ></div>
+			<div class="box" ></div>
+			<div class="box" ></div>
+			<div class="box" ></div>
+	</div>
+</body>
+<script>
+       const boxes = document.querySelectorAll('.box');
+		let player_one = 'X';
+		let player_two = 'O';
+		// let currentPlayer = x;
+		var currentPlayer = true;
+		  boxes.forEach(box=>box.addEventListener('click',function(){
+				if(currentPlayer){
+				    box.textContent = 'X';
+					currentPlayer = false;
+				}else{
+					box.textContent = 'O';
+					currentPlayer = true;
+				}
+				
+				checkWinner();
+		  }));
+	
+	const win_scenerio = [ 
+		  [0,1,2],
+		  [3,4,5],
+		  [6,7,8],
+		  [0,3,6],
+		  [1,4,7],
+		  [2,5,8],
+		  [0,4,8],
+		  [2,4,6]
+		];
+
+	function checkWinner(){
+		for(var i=0; i<win_scenerio.length; i++){
+			console.log(win_scenerio[i])
+		}
+	}
+		
+</script>
+</html>
+

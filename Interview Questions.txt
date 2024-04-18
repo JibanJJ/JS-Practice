@@ -1,0 +1,358 @@
+													---- Coding Round Questions ----
+ 
+ Get the smallest & largest number from an array
+ Get the second smallest or larget element
+ Reverse an array
+ Sort an array 
+ find the kth largest and smallest element of an array like ex- k=3 get the 3rd smallest/largest element
+ find how many times a particular number is in a array
+ Sum of an array
+ Move the negative elements to one side
+ Merge the array and get the only repeated elements 
+ find the duplicates from an array
+ Rearrange array in alternating positive & negative items
+ find the common element of 3 different array
+ Cyclically rotate an array by one
+ Find the first repeating element in an array of integers (In result only getting repeated element not getting first one)
+ Write a function that takes in two sorted arrays and merges them into a single sorted array.
+ Find the Intersection of Two Arrays (common element)
+ Write a function that takes an array and an element to remove, and returns a new array with the specified element removed.
+ Sort array of object of objects
+ Write a function that takes an array and chunk size as input and splits the array into multiple sub-arrays of the specified chunk size.
+ Find the first repeating element in an array of integers
+ Implement a function that filters employees based on dynamic criteria specified as an object.
+ Create a function that sorts these products by price in ascending or descending order. 
+ Implement a function that finds the intersection of these arrays based on common properties, returning an array of objects containing only the properties present in both arrays.
+ Write a function that finds the student with the highest and lowest scores.
+ Write a function that takes an array of strings and returns an object containing the frequency of each unique string in the array.
+ 
+ 
+ var employees = [
+         { name: "John", department: "HR", salary: 50000 },
+         { name: "Alice", department: "Engineering", salary: 60000 },
+         { name: "Bob", department: "HR", salary: 55000 }
+     ];
+    
+   -- Write a function that returns an object containing the average salary for each department
+  
+  var array1 = [{ id: 1, name: "John" }, { id: 2, name: "Alice" }];
+  var array2 = [{ id: 3, name: "Bob" }, { id: 1, name: "John" }];
+  
+   -- Develop a function that merges these arrays and updates the values of common properties if they exist, otherwise appends the object to the merged array.
+  
+  var students = [
+         { name: "John", grade: "A", class: "Math" },
+         { name: "Alice", grade: "B", class: "Science" },
+         { name: "Bob", grade: "A", class: "Math" }
+     ];
+	 
+  Write a function that groups students by class, returning an object where the keys are class names and the values are arrays of student objects.
+   
+  var products = [
+	  { name: "Laptop", category: "Electronics", price: 1000 },
+	  { name: "Shirt", category: "Clothing", price: 25 },
+	  { name: "Headphones", category: "Electronics", price: 50 }
+  ];
+		  
+  Write a function that filters products based on multiple criteria such as category and price range.
+	
+  var nestedArray = [[1, 2, 3], [2, 3, 4], [3, 4, 5]];
+  Develop a function that finds unique values across all nested arrays and returns them as a single array.
+	
+  var products = [
+	  { name: "Laptop", price: 1000, quantity: 5 },
+	  { name: "Phone", price: 800, quantity: 10 },
+	  { name: "Tablet", price: 500, quantity: 8 }
+  ];
+
+  Create a function that transforms the array of objects to calculate the total value of each product (price multiplied by quantity) and add a new property `totalValue` to each object.
+	
+  var students = [
+	  { name: "John", score: 85 },
+	  { name: "Alice", score: 90 },
+	  { name: "Bob", score: 75 }
+  ];
+  
+  Get the Heighest score and Lowest score
+  
+  var employees = [
+	 { name: "John", department: "HR", salary: 50000 },
+	 { name: "Alice", department: "Engineering", salary: 60000 },
+	 { name: "Bob", department: "HR", salary: 55000 }
+  ];
+    
+  Write a function that returns an object containing the average salary for each department.
+  
+  const nestedArray = [1, [2, [3, 4]], 5, [6, [7, 8, [9, 10]]]]
+  Write a function that recursively flattens this array into a single array.
+	
+	
+	
+	
+	
+
+											------------ STRING ------------
+
+ Write a function that takes a string as input and returns the string reversed. (Both by letter and word)
+ Write a function that takes a string as input and returns the number of vowels contained in it. and what are them
+ Write a function that takes a sentence as input and returns the longest word in it.
+
+ Write a function that takes a string as input and returns an object containing the count of each character in the string.
+ Write a function that takes a string as input and returns the string with the order of the words reversed.
+ Write a function that takes a string as input and returns true if it's a palindrome (reads the same backward as forward), and false otherwise.
+ Write a function that takes a string as input and capitalizes the first letter of each word in the string.
+ Write a function that takes two strings as input and returns true if they are anagrams of each other, and false otherwise. Anagrams are words or phrases that contain the same characters but in a different order.
+ Write a function to check if a given string contains only numbers.
+ write a function to check the parentheses are balanced or not
+ 
+ 
+ 
+
+
+												---------- NUMBER PROGRAMS -------------
+
+ Check if a Number is Even or Odd:
+ Write a function that takes an array of numbers as input and returns the sum of all even numbers in the array.
+ Write a program that prints the numbers from 1 to 100. But for multiples of three, print "Fizz" instead of the number, and for the multiples of five, print "Buzz". For numbers that are multiples of both three and five, print "FizzBuzz".
+ Reverse an Integer 
+ Calculate the Sum of Digits in a Number
+ Check if a Number is Palindrome:
+ Write a function that takes an array of numbers as input and returns the average of all the numbers.
+ Calculate the Factorial of a Number:
+ Find the largest palindrome made from the product of two n-digit numbers.
+ Write a JavaScript function to determine if a given number is a perfect number or not.
+ Write a JavaScript function to find all perfect numbers between 1 and a given number.
+ Greatest Common Divisor of 2 numbers
+ Write a function that takes in two sorted arrays and returns the median of the combined array.
+ Check for Armstrong Number
+ 
+												------------- React JS QUESTIONS ------------
+ 
+ what is react
+ what is virtual DOM
+ difference between createRoot() and render()
+ What is JSX
+ what is components and types
+ Features of react
+ Lifecycle of Components
+ 
+ what is React Hooks
+ Explain the useState hook in React?
+ Explain the useEffect hook in react?
+ Explain the useRef hook in react?
+ Explain the Custom hook in react?
+ Explain the useReduce hook in react?
+ 
+ what is react-dom
+ Difference between class component and functional component
+ Difference between Prop and State
+ What is a key in React?
+ Explain the difference between React and Angular?
+ Explain the use of render method in React?
+ What is higher-order component in React?
+ Explain one way data binding in React?
+
+ What is conditional rendering in React?
+ What is react router?
+ Explain the components of a react-router
+ What is the use of ref in React?
+ 
+ What is React Fragments?
+ What is a react developer tool?
+ How to use styles in ReactJS?
+ What is prop drilling and its disadvantages?
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ // UI related (Javascript)
+ 
+ dark & light theme
+ fetching data from API
+ Print Date time and Second
+ Birthday Reminder in Dates
+ TODO list in js
+ Write a function to generate a random password and otp
+ Age Calculator
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	Implement a tooltip component that appears when hovering over an element.
+	Implement a search/filter functionality for a list of items.
+	Develop a modal popup window that appears when clicking a button.
+	Create a form validation system for validating user input.
+	Create a responsive grid layout for displaying items.
+	Build a file uploader component with drag-and-drop functionality.
+	Implement a function to check if a given year is a leap year.
+	Write a function to check if a given string is a valid email address.
+	
+	17. Find Missing Number:
+		Write a function that takes an array of numbers from 1 to n, except for one missing number, and returns the missing number.
+
+	Object :
+	1. var nestedObject = { 'a': 1, 'b': { 'c': 2, 'd': { 'e': 3} } };
+		-- //Output: { 'a': 1, 'b.c': 2, 'b.d.e': 3 }
+
+															------------- IN REACT ---------------
+
+	2. Inventory Management System:
+		 var products = [
+			 { id: 1, name: "Laptop", price: 1000, quantity: 10 },
+			 { id: 2, name: "Phone", price: 800, quantity: 20 },
+			 // More products...
+		 ];
+	   - Question: Develop a system that allows adding, updating, and removing products from the inventory, with features such as stock tracking and low stock alerts.
+
+	3. Social Network Analysis:
+	  
+		 var users = [
+			 { id: 1, name: "John", friends: [2, 3, 4], interests: ["programming", "music"] },
+			 { id: 2, name: "Alice", friends: [1, 3], interests: ["art", "reading"] },
+			 // More users...
+		 ];
+		
+	   - Question: Develop algorithms to analyze social connections, identify mutual friends, recommend new friends, and detect communities within the network.
+
+	4. E-commerce Order Processing:
+	  
+		 var orders = [
+			 { orderId: "ORD001", customer: "John Doe", products: [{ id: 1, name: "Laptop", price: 1000, quantity: 1 }], status: "Pending" },
+			 { orderId: "ORD002", customer: "Alice Smith", products: [{ id: 2, name: "Phone", price: 800, quantity: 2 }], status: "Shipped" },
+			 // More orders...
+		 ];
+		
+	   - Question: Implement order processing functionalities such as order tracking, status updates, inventory deduction, and shipping notifications.
+
+	5. Task Management System:
+		 var project = {
+			 name: "Project X",
+			 tasks: [
+				 { id: 1, title: "Task 1", deadline: "2024-02-10", status: "Incomplete" },
+				 { id: 2, title: "Task 2", deadline: "2024-02-15", status: "Complete" },
+				 // More tasks...
+			 ]
+		 };
+		
+	   - Question: Develop a system that allows users to create, assign, update, and track tasks within a project, with features such as task prioritization, progress monitoring, and deadline reminders.
+
+
+
+
+
+
+
+
+
+
+
+
+------------- JS THEORY QUESTIONS ------------
+
+ What are the possible ways to create objects in JavaScript
+ What is prototype chain
+ What is the difference between Call, Apply and Bind
+ What is a higher order function
+ What is a unary function
+ What is the purpose of the array slice method
+ What is the purpose of the array splice method
+ What is the currying function
+ What is IIFE(Immediately Invoked Function Expression)
+ How do you redeclare variables in switch block without an error
+ 
+ What is a cookie
+ Why do you need a Cookie
+ What are the options in a cookie
+ How do you delete a cookie
+ 
+ 
+* How do you compare Object and Map
+* What is a strict mode in javascript
+* Why do you need strict mode
+* How do you declare strict mode
+* What is the difference between window and document
+* What is eval
+* What is the use of preventDefault method
+
+ window.location.href = 'www.w3schools.com'
+
+
+28 What are modules
+29 Why do you need modules
+
+51 What is a promise
+52 Why do you need a promise
+53 What are the three states of promise
+61 What are the main rules of promise
+63 What is promise chaining
+64 What is promise.all
+65 What is the purpose of race method in promise
+
+54 What is a callback function
+55 Why do we need callbacks
+56 What is a callback hell
+62 What is callback in callback	
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+222 What are the conventions to be followed for the usage of swtich case
+223 What are primitive data types
+224 What are the different ways to access object properties
+225 What are the function parameter rules
+226 What is an error object
+227 When you get a syntax error
+228 What are the different error names from error object

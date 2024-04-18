@@ -1,0 +1,196 @@
+
+<html>
+<head>
+<title>Duplicates</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+<!-- <table>
+		<thead>
+			<tr>
+				<th>Designation Name</th>
+				<th>Employee Name</th>
+				<th>Employee ID</th>
+				<th>Joining Date</th>
+			</tr>
+		</thead>
+		
+		<tfoot>
+			<tr>
+				<td>
+					<div class="controls">
+						<select class="width" ng-model="emp.designationname" class ="form-control" ng-options="option.DesignationID as option.DesignationName for option in dup_designation_names">
+							<option value="" selected="">&nbsp;</option>
+						</select>
+					</div>
+				</td>
+				<td>
+					<div class="controls">
+						<select class="width" ng-model="emp.employeename" class ="form-control" ng-options="option.EmployeeId as option.EmployeeName for option in Employee_details">
+							<option value="" selected="">&nbsp;</option>
+						</select>
+					</div>
+				</td>
+				<td>
+					<div class="controls">
+						<input ng-model="emp.employeeId" class ="form-control"/>
+					</div>
+				</td>
+				<td>
+					<div class="controls">
+						<input ng-model="emp.joiningdate" class ="form-control"/>
+					</div>
+				</td>
+				<td>
+					<button ng-click="addData()">ADD</button>
+				</td>
+			</tr>
+		</tfoot>
+		
+		
+	</table> -->
+	
+	<table>
+		<thead>
+			<th>Designation Name</th>
+			<th>Employee Name</th>
+			<th>EmployeeId</th>
+			<th>Joined Date</th>
+		</thead>
+		<tbody>
+			<td>
+				<div class="controls">
+					<select class="width" ng-model="user.designationname" class ="form-control" ng-options="option.DesignationID as option.DesignationName for option in uniqueDesignations" ng-change="get_emp_names(user.designationname)"></select>
+				</div>
+			</td>
+			<td>
+				<div class="controls">
+					<select class="width" ng-model="user.employeename" class ="form-control" ng-options="option.EmployeeId as option.EmployeeName for option in uniq_emp_names"></select>
+				</div>
+			</td>
+			<td></td>
+			<td></td>
+		</tbody>
+	</table>
+</div>
+<script>
+	var app = angular.module('myApp', []);
+	app.controller('myCtrl', function($scope){
+		$scope.Employee_details = [
+				 {"EmployeeId":"68150","EmployeeName":"Margo Meddemmen","DesignationID":1,"DesignationName":"Developer","JoinedDate":"9/5/2022"},
+				 {"EmployeeId":"531","EmployeeName":"Tris Mc Cahey","DesignationID":1,"DesignationName":"Developer","JoinedDate":"5/20/2019"},
+				 {"EmployeeId":"546","EmployeeName":"Aida Kemwall","DesignationID":2,"DesignationName":"Manager","JoinedDate":"9/6/2022"},
+				 {"EmployeeId":"1341","EmployeeName":"Rochelle Merrisson","DesignationID":2,"DesignationName":"Manager","JoinedDate":"10/7/2019"},
+				 {"EmployeeId":"96","EmployeeName":"Gordie Gilbee","DesignationID":3,"DesignationName":"Functional","JoinedDate":"8/26/2022"},
+				 {"EmployeeId":"67122","EmployeeName":"Cross Battie","DesignationID":3,"DesignationName":"Functional","JoinedDate":"9/16/2019"},
+				 {"EmployeeId":"24","EmployeeName":"Isa Boobier","DesignationID":1,"DesignationName":"Developer","JoinedDate":"4/7/2021"},
+				 {"EmployeeId":"446","EmployeeName":"Christalle Lodin","DesignationID":3,"DesignationName":"Functional","JoinedDate":"3/3/2020"},
+				 {"EmployeeId":"5","EmployeeName":"Blythe Gandy","DesignationID":4,"DesignationName":"BusinessAnalyst","JoinedDate":"1/17/2021"},
+				 {"EmployeeId":"2558","EmployeeName":"Bartlet Deaves","DesignationID":3,"DesignationName":"Functional","JoinedDate":"11/26/2020"},
+				 {"EmployeeId":"575","EmployeeName":"Donni Pettecrew","DesignationID":3,"DesignationName":"Functional","JoinedDate":"3/17/2022"},
+				 {"EmployeeId":"636","EmployeeName":"Bink Glas","DesignationID":3,"DesignationName":"Functional","JoinedDate":"7/19/2021"},
+				 {"EmployeeId":"89","EmployeeName":"Giordano Newdick","DesignationID":1,"DesignationName":"Developer","JoinedDate":"1/11/2020"},
+				 {"EmployeeId":"72479","EmployeeName":"Ardella Denford","DesignationID":3,"DesignationName":"Functional","JoinedDate":"9/29/2022"},
+				 {"EmployeeId":"7","EmployeeName":"Dennie Cyseley","DesignationID":2,"DesignationName":"Manager","JoinedDate":"8/29/2020"},
+				 {"EmployeeId":"31032","EmployeeName":"Dionne Longwood","DesignationID":3,"DesignationName":"Functional","JoinedDate":"8/7/2019"},
+				 {"EmployeeId":"768","EmployeeName":"Melba Nolli","DesignationID":3,"DesignationName":"Functional","JoinedDate":"1/8/2020"},
+				 {"EmployeeId":"4329","EmployeeName":"Druci Arnason","DesignationID":1,"DesignationName":"Developer","JoinedDate":"2/13/2022"},
+				 {"EmployeeId":"4601","EmployeeName":"Dicky Bellringer","DesignationID":1,"DesignationName":"Developer","JoinedDate":"1/6/2020"},
+				 {"EmployeeId":"8468","EmployeeName":"Carney Veevers","DesignationID":1,"DesignationName":"Developer","JoinedDate":"7/24/2021"},
+				 {"EmployeeId":"2","EmployeeName":"Georgette Di Iorio","DesignationID":4,"DesignationName":"BusinessAnalyst","JoinedDate":"4/16/2021"},
+				 {"EmployeeId":"6","EmployeeName":"Clary Goreisr","DesignationID":3,"DesignationName":"Functional","JoinedDate":"8/11/2022"},
+				 {"EmployeeId":"6","EmployeeName":"Gilligan Gilks","DesignationID":3,"DesignationName":"Functional","JoinedDate":"3/2/2020"},
+				 {"EmployeeId":"35040","EmployeeName":"Pattin Bausmann","DesignationID":4,"DesignationName":"BusinessAnalyst","JoinedDate":"7/23/2021"},
+				 {"EmployeeId":"411","EmployeeName":"Orazio Sandyfirth","DesignationID":4,"DesignationName":"BusinessAnalyst","JoinedDate":"8/4/2019"},
+				 {"EmployeeId":"9076","EmployeeName":"Fonsie Bernollet","DesignationID":2,"DesignationName":"Manager","JoinedDate":"9/12/2020"},
+				 
+				 {"EmployeeId":"6","EmployeeName":"Malsher","DesignationID":10,"DesignationName":"Engg.","JoinedDate":"6/2/2021"},
+				 {"EmployeeId":"1","EmployeeName":"Wattins","DesignationID":11,"DesignationName":"Teacher","JoinedDate":"3/26/2021"},
+				 {"EmployeeId":"2","EmployeeName":"Privost","DesignationID":12,"DesignationName":"Programmer","JoinedDate":"7/26/2022"},
+				 
+				 {"EmployeeId":"29307","EmployeeName":"Orland Ramsden","DesignationID":2,"DesignationName":"Manager","JoinedDate":"10/4/2022"},
+				 {"EmployeeId":"64664","EmployeeName":"Silvano Malsher","DesignationID":1,"DesignationName":"Developer","JoinedDate":"6/2/2021"},
+				 {"EmployeeId":"109","EmployeeName":"Ulla Wattins","DesignationID":3,"DesignationName":"Functional","JoinedDate":"3/26/2021"},
+				 {"EmployeeId":"229","EmployeeName":"Ambrosio Privost","DesignationID":2,"DesignationName":"Manager","JoinedDate":"7/26/2022"},
+		
+			];
+			
+			 $scope.uniqueDesignations = [];
+
+			
+			$scope.Employee_details.forEach(employee => {
+			
+			  var existingDesignation = $scope.uniqueDesignations.find(d => d.DesignationID === employee.DesignationID && d.DesignationName === employee.DesignationName);
+				
+				
+			  // If not found, add the Designation to uniqueDesignations
+				  if (!existingDesignation) {
+					$scope.uniqueDesignations.push({
+					  DesignationID: employee.DesignationID,
+					  DesignationName: employee.DesignationName
+					});
+				  }
+			 
+			  });
+			   <!-- console.log($scope.uniqueDesignations) -->
+			  
+			  
+			   $scope.get_emp_names = function(deg_id) {
+				$scope.uniq_emp_names = $scope.Employee_details.filter(emp => emp.DesignationID === deg_id);
+				console.log('unq', $scope.uniq_emp_names);
+			};
+		/*	$scope.dup_designation_names = [];
+			$scope.resss = [];
+			
+			for(var i=0; i<$scope.Employee_details.length; i++){
+				
+				var emp_designation_names = $scope.Employee_details[i].DesignationName;
+				var count=0;
+				var final_count = 0;
+				
+					for(var j=i+1; j<$scope.Employee_details.length; j++){
+						if(emp_designation_names == $scope.Employee_details[j].DesignationName){
+							count++;
+						}
+					}
+					if(count == 0){
+						 $scope.resss.push($scope.Employee_details[i]);
+						 console.log('$scope.resss',$scope.resss)
+					}
+					
+					
+					var index = $scope.resss.findIndex((x) => x.DesignationName == emp_designation_names);
+					
+					if(index != -1){
+						final_count++;
+					}
+					
+					if(final_count == 1){
+						$scope.dup_designation_names.push($scope.resss[index]);
+						
+					}
+			}*/
+			
+			/*for(var i=0; i< $scope.resss.length; i++){
+				console.log($scope.resss[i]);
+				
+				var final_count = 0;
+				for(var k=0; k<$scope.Employee_details.length; k++){
+					if($scope.resss[i].DesignationName == $scope.Employee_details[k].DesignationName){
+						final_count++;
+					}
+				}
+				
+				if(final_count == 1){
+					$scope.dup_designation_names.push($scope.resss[i])
+				}
+				
+			} */
+			
+			
+	});
+</script>
+</body>
+</html>
